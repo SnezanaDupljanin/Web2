@@ -262,29 +262,9 @@
     <Compile Include="Migrations\201905222056072_InitialMigration.Designer.cs">
       <DependentUpon>201905222056072_InitialMigration.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201905272120335_AddedCoefficient.cs" />
-    <Compile Include="Migrations\201905272120335_AddedCoefficient.Designer.cs">
-      <DependentUpon>201905272120335_AddedCoefficient.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201905280905539_nesto.cs" />
-    <Compile Include="Migrations\201905280905539_nesto.Designer.cs">
-      <DependentUpon>201905280905539_nesto.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201905280918275_nesto2.cs" />
-    <Compile Include="Migrations\201905280918275_nesto2.Designer.cs">
-      <DependentUpon>201905280918275_nesto2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201905280919036_nesto3.cs" />
-    <Compile Include="Migrations\201905280919036_nesto3.Designer.cs">
-      <DependentUpon>201905280919036_nesto3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201905280919330_nesto4.cs" />
-    <Compile Include="Migrations\201905280919330_nesto4.Designer.cs">
-      <DependentUpon>201905280919330_nesto4.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201905281026597_First.cs" />
-    <Compile Include="Migrations\201905281026597_First.Designer.cs">
-      <DependentUpon>201905281026597_First.cs</DependentUpon>
+    <Compile Include="Migrations\201906021646415_First11.cs" />
+    <Compile Include="Migrations\201906021646415_First11.Designer.cs">
+      <DependentUpon>201906021646415_First11.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
@@ -424,23 +404,8 @@
     <EmbeddedResource Include="Migrations\201905222056072_InitialMigration.resx">
       <DependentUpon>201905222056072_InitialMigration.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905272120335_AddedCoefficient.resx">
-      <DependentUpon>201905272120335_AddedCoefficient.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905280905539_nesto.resx">
-      <DependentUpon>201905280905539_nesto.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905280918275_nesto2.resx">
-      <DependentUpon>201905280918275_nesto2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905280919036_nesto3.resx">
-      <DependentUpon>201905280919036_nesto3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905280919330_nesto4.resx">
-      <DependentUpon>201905280919330_nesto4.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905281026597_First.resx">
-      <DependentUpon>201905281026597_First.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201906021646415_First11.resx">
+      <DependentUpon>201906021646415_First11.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

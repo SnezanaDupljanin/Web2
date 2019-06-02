@@ -79,6 +79,9 @@ namespace WebApp.App_Start
             container.RegisterType<IPriceListRepository, PriceListRepository>();
             container.RegisterType<IPriceListItemRepository, PriceListItemRepository>();
             container.RegisterType<ICoefficientRepository, CoefficientRepository>();
+            container.RegisterType<ApplicationUserManager>();
+            container.RegisterType<ISecureDataFormat<AuthenticationTicket>, CustomJwtFormat>(new InjectionConstructor("http://localhost:52295"));
+
 
         }
 

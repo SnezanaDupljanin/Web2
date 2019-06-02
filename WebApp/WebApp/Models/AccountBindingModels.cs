@@ -35,6 +35,31 @@ namespace WebApp.Models
     public class RegisterBindingModel
     {
         [Required]
+        [Display(Name = "Name")]
+        public string Name { get; set; }
+
+        [Required]
+        [Display(Name = "LastName")]
+        public string LastName { get; set; }
+
+        [Required]
+        [Display(Name = "DateOfBirth")]
+        public DateTime DateOfBirth { get; set; }
+
+
+        [Required]
+        [Display(Name = "Address")]
+        public string Address { get; set; }
+
+
+        [Required]
+        [Display(Name = "Type")]
+        public string Type { get; set; }
+
+        [Display(Name = "ImageUrl")]
+        public string ImageUrl { get; set; }
+
+        [Required]
         [Display(Name = "Email")]
         public string Email { get; set; }
 
