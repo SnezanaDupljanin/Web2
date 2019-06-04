@@ -1,0 +1,76 @@
+<div class="signup-form wrapper fadeInDown" id="formContent">
+  <form #f="ngForm" (ngSubmit)="Registrate(f.value, f)" ngNativeValidate >
+    <h2 style="margin-left: 10px">Sign Up</h2>
+    <p>Please fill in this form to create an account!</p>
+    <hr>
+    <div class="form-group">
+      <div class="input-group">
+        <span class="input-group-addon"><i class="fa fa-user" style="margin-right: 10px; margin-top: 10px"></i></span>
+        <input type="text" class="form-control" name="Name" placeholder="Name" required="required" ngModel>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="input-group">
+        <span class="input-group-addon"><i class="fa fa-user" style="margin-right: 10px; margin-top: 10px"></i></span>
+        <input type="text" class="form-control" name="LastName" placeholder="Last name" required="required" ngModel>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="input-group">
+        <span class="input-group-addon"><i class="fa fa-user" style="margin-right: 10px; margin-top: 10px"></i></span>
+        <input type="date" class="form-control" name="DateOfBirth" placeholder="Date of Birth" required="required" ngModel>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="input-group">
+        <span class="input-group-addon"><i class="fa fa-paper-plane"
+            style="margin-right: 10px; margin-top: 10px"></i></span>
+        <input type="email" class="form-control" name="Email" placeholder="Email Address" required="required" ngModel>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="input-group">
+        <span class="input-group-addon"><i class="fa fa-lock" style="margin-right: 10px; margin-top: 10px"></i></span>
+        <input type="text" class="form-control" name="Password" placeholder="Password" required="required" ngModel>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="input-group">
+        <span class="input-group-addon">
+          <i class="fa fa-lock" style="margin-right: 10px; margin-top: 10px"></i>
+          <i class="fa fa-check" style="margin-right: 10px; margin-top: 10px"></i>
+        </span>
+        <input type="text" class="form-control" name="ConfirmPassword" placeholder="Confirm Password"
+          required="required" ngModel>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="input-group">
+        <span class="input-group-addon"><i class="fa fa-user" style="margin-right: 10px; margin-top: 10px"></i></span>
+        <input type="text" class="form-control" name="Address" placeholder="Address" required="required" ngModel>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="input-group">
+        <span class="input-group-addon"><i class="fa fa-user" style="margin-right: 10px; margin-top: 10px"></i></span>
+        <select class="form-control" name="Type" ngModel>
+          <option value="Regular">Regular</option>
+          <option value="Student">Student</option>
+          <option value="Pensioner">Pensioner</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group ">
+      <div class="input-group">
+        <span class="input-group-addon"><i class="fa fa-user" style="margin-right: 10px; margin-top: 10px"></i></span>
+        <input type="file" name="ImageUrl" placeholder="File" ngModel>
+      </div>
+    </div>
+    <div class="form-group">
+    </div>
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary btn-lg">Sign Up</button>
+    </div>
+  </form>
+</div>
+
