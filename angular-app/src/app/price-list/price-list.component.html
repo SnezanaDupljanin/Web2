@@ -15,11 +15,24 @@
               <div class="panel-body text-center">
                 <p class="lead" style="font-size:40px"><strong> {{priceTemporal}} dn</strong></p>
               </div>
-              <input type="radio" name="regularTemporal" ngModel (click)=onCheckedRegularTemporal()>Regular <br />
-              <input type="radio" name="studentTemporal" ngModel (click)="onCheckedStudentTemporal()">Student <br />
-              <input type="radio" name="pensionerTemporal" ngModel (click)="onCheckedPensionerTemporal()">Pensioner
-              <br />
-              <div class="panel-footer">
+
+              <div class="form-check" >
+                <input type="radio" id="materialGroupExample1" (click)="onCheckedRegularTemporal()" checked name="groupOfMaterialRadios">
+                <label style="margin-left: 30px" for="materialGroupExample1">Regular</label>
+              </div>
+              
+              <!-- Group of material radios - option 2 -->
+              <div class="form-check">
+                <input type="radio" id="materialGroupExample2" (click)="onCheckedStudentTemporal()" name="groupOfMaterialRadios" >
+                <label style="margin-left: 30px" for="materialGroupExample2">Student</label>
+              </div>
+              
+              <!-- Group of material radios - option 3 -->
+              <div class="form-check">
+                <input type="radio" id="materialGroupExample3" (click)="onCheckedPensionerTemporal()" name="groupOfMaterialRadios">
+                <label style="margin-left: 30px" for="materialGroupExample3">Pensioner</label>
+              </div>
+              <div class="panel-footer" *ngIf="showButton">
                 <a class="btn btn-lg btn-block btn-danger" href="#">BUY NOW!</a>
               </div>
             </div>
@@ -37,10 +50,23 @@
               <div class="panel-body text-center">
                 <p class="lead" style="font-size:40px"><strong>{{priceDaily}} din </strong></p>
               </div>
-              <input type="radio" name="regularDaily" ngModel (click)=onCheckedRegularDaily()>Regular <br />
-              <input type="radio" name="studentDaily" (click)="onCheckedStudentDaily()">Student <br />
-              <input type="radio" name="pensionerDaily" ngModel (click)="onCheckedPensionerDaily()">Pensioner <br />
-              <div class="panel-footer">
+              <div class="form-check">
+                <input type="radio" id="materialGroupExample1" (click)="onCheckedRegularDaily()" checked name="groupOfMaterialRadios">
+                <label style="margin-left: 30px" for="materialGroupExample1">Regular</label>
+              </div>
+              
+              <!-- Group of material radios - option 2 -->
+              <div class="form-check">
+                <input type="radio" id="materialGroupExample2" (click)="onCheckedStudentDaily()" name="groupOfMaterialRadios" >
+                <label style="margin-left: 30px" for="materialGroupExample2">Student</label>
+              </div>
+              
+              <!-- Group of material radios - option 3 -->
+              <div class="form-check">
+                <input type="radio" id="materialGroupExample3" (click)="onCheckedPensionerDaily()" name="groupOfMaterialRadios">
+                <label style="margin-left: 30px" for="materialGroupExample3">Pensioner</label>
+              </div>
+              <div class="panel-footer" *ngIf="showButton">
                 <a class="btn btn-lg btn-block btn-info" href="#">BUY NOW!</a>
               </div>
             </div>
@@ -59,10 +85,23 @@
               <div class="panel-body text-center">
                 <p class="lead" style="font-size:40px"><strong>{{priceMonthly}} din</strong></p>
               </div>
-              <input type="radio" name="regularMonthly" ngModel (click)=onCheckedRegularMonthly()>Regular <br />
-              <input type="radio" name="studentMonthly" (click)="onCheckedStudentMonthly()">Student <br />
-              <input type="radio" name="pensionerMonthly" ngModel (click)="onCheckedPensionerMonthly()">Pensioner <br />
-              <div class="panel-footer">
+              <div class="form-check">
+                <input type="radio" id="materialGroupExample1" (click)="onCheckedRegularMonthly()" checked name="groupOfMaterialRadios">
+                <label style="margin-left: 30px" for="materialGroupExample1">Regular</label>
+              </div>
+              
+              <!-- Group of material radios - option 2 -->
+              <div class="form-check">
+                <input type="radio" id="materialGroupExample2" (click)="onCheckedStudentMonthly()" name="groupOfMaterialRadios" >
+                <label style="margin-left: 30px" for="materialGroupExample2">Student</label>
+              </div>
+              
+              <!-- Group of material radios - option 3 -->
+              <div class="form-check">
+                <input type="radio" id="materialGroupExample3" (click)="onCheckedPensionerMonthly()" name="groupOfMaterialRadios">
+                <label style="margin-left: 30px" for="materialGroupExample3">Pensioner</label>
+              </div>
+              <div class="panel-footer" *ngIf="showButton">
                 <a class="btn btn-lg btn-block btn-success" href="#">BUY NOW!</a>
               </div>
             </div>
@@ -80,35 +119,32 @@
               <div class="panel-body text-center">
                 <p class="lead" style="font-size:40px"><strong>{{priceYearly}} din</strong></p>
               </div>
-              <input type="radio" name="regularYearly" ngModel (click)=onCheckedRegularYearly()>Regular <br />
-              <input type="radio" name="studentYearly" (click)="onCheckedStudentYearly()">Student <br />
-              <input type="radio" name="pensionerYearly" ngModel (click)="onCheckedPensionerYearly()">Pensioner <br />
-              <div class="panel-footer">
+
+              <div class="form-check">
+                <input type="radio" id="materialGroupExample1" (click)="onCheckedRegularYearly()" checked name="groupOfMaterialRadios">
+                <label style="margin-left: 30px" for="materialGroupExample1">Regular</label>
+              </div>
+              
+              <!-- Group of material radios - option 2 -->
+              <div class="form-check">
+                <input type="radio" id="materialGroupExample2" (click)="onCheckedStudentYearly()" name="groupOfMaterialRadios" >
+                <label style="margin-left: 30px" for="materialGroupExample2">Student</label>
+              </div>
+              
+              <!-- Group of material radios - option 3 -->
+              <div class="form-check">
+                <input type="radio" id="materialGroupExample3" (click)="onCheckedPensionerYearly()" name="groupOfMaterialRadios">
+                <label style="margin-left: 30px" for="materialGroupExample3">Pensioner</label>
+              </div>
+
+              <div class="panel-footer" *ngIf="showButton">
                 <a class="btn btn-lg btn-block btn-primary" href="#">BUY NOW!</a>
               </div>
             </div>
             <!-- /PRICE ITEM -->
           </form>
-
         </div>
-
       </div>
-
-
     </div>
-
-
   </div>
-
-  <!--<select ngModel name="type">
-        <option value="Regular">Regular</option>
-        <option *ngFor = "let type of coefficients" >{{type.Name}}</option>
-      </select>
-
-      <select style="margin-left: 30px" ngModel name="item">
-          <option *ngFor = "let item of items" >{{item.Name}}</option>
-        </select> <br/>
-        <input type="submit" value="Show price" style="margin-left: 30px"/>-->
-
-  <!--<label id="price">{{price}}</label>-->
 </form>

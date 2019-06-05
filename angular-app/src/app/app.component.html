@@ -1,39 +1,40 @@
-<div style="min-height: 750px" >
+<div style="min-height: 750px">
   <nav class="navbar navbar-expand-md bg-dark navbar-dark sticky-top" style="height: 50px">
     <a class="navbar-brand" style="color: rgb(118, 189, 199); font-size: 30px;font-style: italic;" href="#">JGSP NOVI
       SAD</a>
-    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navb"
-      aria-expanded="true">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
     <div id="navb" class="navbar-collapse collapse hide">
       <ul class="navbar-nav" style="margin-left: 180px; font-size: 20px">
         <li class="nav-item">
-          <a  style="color: rgb(236, 238, 238)" routerLink="/TimeTable" class="nav-link" href="#">Time Table</a>
+          <a style="color: rgb(236, 238, 238)" routerLink="/TimeTable" class="nav-link" href="#">Time Table</a>
         </li>
         <li class="nav-item ">
-          <a routerLink="/Map" style="margin-left: 40px;color: rgb(236, 238, 238) " class="nav-link" >Lines</a>
+          <a routerLink="/Map" style="margin-left: 40px;color: rgb(236, 238, 238) " class="nav-link">Lines</a>
         </li>
         <li class="nav-item">
           <a style="margin-left: 40px;color: rgb(236, 238, 238) " class="nav-link" href="#">Current vehicles</a>
         </li>
         <li class="nav-item">
-          <a routerLink="/PriceList" style="margin-left: 40px;color: rgb(236, 238, 238)" class="nav-link" href="#">Pricelist</a>
+          <a routerLink="/PriceList" style="margin-left: 40px;color: rgb(236, 238, 238)" class="nav-link">Pricelist</a>
         </li>
       </ul>
 
       <ul class="nav navbar-nav ml-auto" style="margin-right: 20px;font-size: 20px">
-        <li class="nav-item" style="margin-right: 30px" >
+        <li class="nav-item" style="margin-right: 30px" *ngIf="showLogIn()">
           <a class="nav-link" routerLink="/Registration"><span class="fas fa-user"></span> Sign Up</a>
         </li>
-        <li class="nav-item" >
+        <li class="nav-item" style="margin-right: 30px" *ngIf="showLogOut()">
+            <a class="nav-link" routerLink=""><span class="fas fa-user"></span>Edit Profile</a>
+          </li>
+        <li class="nav-item" *ngIf="showLogIn()">
           <a class="nav-link" routerLink="/Login"><span class="fas fa-sign-in-alt"></span> Login</a>
+        </li>
+        <li class="nav-item" *ngIf="showLogOut()">
+          <a class="nav-link" (click)="callLogout()"><span class="fas fa-sign-in-alt"></span>Log out</a>
         </li>
       </ul>
     </div>
   </nav>
 
-<router-outlet></router-outlet>
+  <router-outlet></router-outlet>
 
 </div>

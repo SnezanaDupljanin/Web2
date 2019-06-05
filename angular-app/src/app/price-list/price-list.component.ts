@@ -25,6 +25,7 @@ export class PriceListComponent implements OnInit {
   priceYearly:number;
   studentCoe:number;
   pensionerCoe:number;
+  showButton:boolean;
 
 
   constructor(private serverService: ServerService, private route: ActivatedRoute, private router: Router) {
@@ -34,6 +35,11 @@ export class PriceListComponent implements OnInit {
     this.callGetItems(); 
     this.callGetCoefficients(); 
     this.callGetPrices();
+    if(localStorage.role ==="AppUser"){
+      this.showButton = true;
+    }else{
+      this.showButton = false;
+    }
   }
 
   callGetItems(){

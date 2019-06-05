@@ -6,6 +6,12 @@ import {Observable} from 'rxjs';
 import { LoginUser } from '../models/loginUser.model';
 import { PriceListItem } from '../models/priceListItem.model';
 
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json'
+  })
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -42,5 +48,11 @@ export class ServerService {
   getTimeTable() : Observable<any>{
     return this.httpClient.get('http://localhost:52295/api/TimeTable');
   }
+
+  logOut() : any{
+    return this.httpClient.post("http://localhost:52295/api/Account/Logout", httpOptions);
+  }
+
+
 
 }
