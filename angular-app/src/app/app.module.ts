@@ -15,6 +15,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './interceptors/interceptor';
 import { MapComponent } from './map/map.component';
 import { PriceListComponent } from './price-list/price-list.component';
+import { TimetableComponent } from './timetable/timetable.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { PriceListComponent } from './price-list/price-list.component';
     LoginComponent,
     RegistrationComponent,
     MapComponent,
-    PriceListComponent
+    PriceListComponent,
+    TimetableComponent
 
   ],
   imports: [

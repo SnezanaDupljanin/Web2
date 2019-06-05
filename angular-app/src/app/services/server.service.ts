@@ -35,4 +35,12 @@ export class ServerService {
     return this.httpClient.get('http://localhost:52295/api/PriceListItem');
   }
 
+  getLines() : Observable<any>{
+    return this.httpClient.get('http://localhost:52295/api/Line');
+  } 
+
+  getTimeTable() : Observable<any>{
+    return this.httpClient.get('http://localhost:52295/api/TimeTable');
+  }
+
 }

@@ -4,6 +4,7 @@ import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
 import {MapComponent} from './map/map.component';
 import {PriceListComponent} from './price-list/price-list.component'
+import {TimetableComponent} from './timetable/timetable.component'
 
 const routes: Routes = [
   {
@@ -28,6 +29,11 @@ const routes: Routes = [
   { 
     path: 'PriceList', 
     component: PriceListComponent 
+  },
+
+  { 
+    path: 'TimeTable', 
+    component: TimetableComponent 
   },
 
 ];

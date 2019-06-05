@@ -1,0 +1,37 @@
+<div style="background-color: rgb(187, 184, 184); opacity: 0.8; margin-top: 10px; margin-left: 0px">
+  <form>
+    <input type="radio" value="false" name="line" value="City lines" style="margin-left: 510px;"
+      (click)=onCheckedCityLines() /><span style="font-size: 20px; color: rgb(250, 12, 12); font-weight: bold">
+      City line</span>
+    <input type="radio" value="false" name="line" value="Suburban lines" style="margin-left: 50px"
+      (click)=onCheckedSuburbanLines()><span style="font-size: 20px; color:rgb(250, 12, 12); font-weight: bold">
+      Suburban lines</span>
+  </form>
+
+  <ul class="list-group" *ngIf="showDivDay">
+    <li class="list-group-item">
+      <input type="radio" [(ngModel)]="radioSelectedDay" name="lineDay" value="Weekday" (change)="onItemChange3()" /> Weekday
+      <input type="radio" [(ngModel)]="radioSelectedDay" name="lineDay" value="Saturday" (change)="onItemChange3()" /> Saturday
+      <input type="radio" [(ngModel)]="radioSelectedDay" name="lineDay" value="Sunday" (change)="onItemChange3()" /> Sunday
+    </li>
+  </ul>
+  <ul class="list-group" *ngIf="showDivCityLines">
+    <li class="list-group-item" *ngFor="let line of cityLines">
+     
+      <input type="radio" [(ngModel)]="radioSelected" name="lineCity" value="{{line}}" (change)="onItemChange1(line)" unchecked />
+      {{line}}
+    
+    </li>
+  </ul>
+  
+  <ul class="list-group" *ngIf="showDivSuburbanLines">
+    <li class="list-group-item" *ngFor="let line of suburbanLines">
+      <input type="radio" [(ngModel)]="radioSelected" name="lineCity" value="{{line}}" (change)="onItemChange2(line)" />
+      {{line}}
+    </li>
+  </ul>
+
+  <div name="divTimes" *ngIf="showdivTimes">
+    <h5>{{radioSelectedString}}</h5>
+  </div>
+</div>
