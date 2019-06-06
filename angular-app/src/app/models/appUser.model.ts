@@ -1,7 +1,7 @@
 export class AppUser{
     Name: string;
     LastName: string;
-    //DateOfBirth: DataTimeFormat;
+    DateOfBirth: Date;
     Address: string;
     Active: Boolean;
     ImageUrl: string;

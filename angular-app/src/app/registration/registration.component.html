@@ -1,76 +1,169 @@
-<div class="signup-form wrapper fadeInDown" id="formContent">
-  <form #f="ngForm" (ngSubmit)="Registrate(f.value, f)" ngNativeValidate >
-    <h2 style="margin-left: 10px">Sign Up</h2>
-    <p>Please fill in this form to create an account!</p>
-    <hr>
-    <div class="form-group">
-      <div class="input-group">
-        <span class="input-group-addon"><i class="fa fa-user" style="margin-right: 10px; margin-top: 10px"></i></span>
-        <input type="text" class="form-control" name="Name" placeholder="Name" required="required" ngModel>
+<div class="container p-3">
+  <div class="offset-3 col-6">
+    <div class="card">
+      <div class="card-header  font-weight-bold">
+        Sign Up Form
       </div>
-    </div>
-    <div class="form-group">
-      <div class="input-group">
-        <span class="input-group-addon"><i class="fa fa-user" style="margin-right: 10px; margin-top: 10px"></i></span>
-        <input type="text" class="form-control" name="LastName" placeholder="Last name" required="required" ngModel>
-      </div>
-    </div>
-    <div class="form-group">
-      <div class="input-group">
-        <span class="input-group-addon"><i class="fa fa-user" style="margin-right: 10px; margin-top: 10px"></i></span>
-        <input type="date" class="form-control" name="DateOfBirth" placeholder="Date of Birth" required="required" ngModel>
-      </div>
-    </div>
-    <div class="form-group">
-      <div class="input-group">
-        <span class="input-group-addon"><i class="fa fa-paper-plane"
-            style="margin-right: 10px; margin-top: 10px"></i></span>
-        <input type="email" class="form-control" name="Email" placeholder="Email Address" required="required" ngModel>
-      </div>
-    </div>
-    <div class="form-group">
-      <div class="input-group">
-        <span class="input-group-addon"><i class="fa fa-lock" style="margin-right: 10px; margin-top: 10px"></i></span>
-        <input type="text" class="form-control" name="Password" placeholder="Password" required="required" ngModel>
-      </div>
-    </div>
-    <div class="form-group">
-      <div class="input-group">
-        <span class="input-group-addon">
-          <i class="fa fa-lock" style="margin-right: 10px; margin-top: 10px"></i>
-          <i class="fa fa-check" style="margin-right: 10px; margin-top: 10px"></i>
-        </span>
-        <input type="text" class="form-control" name="ConfirmPassword" placeholder="Confirm Password"
-          required="required" ngModel>
-      </div>
-    </div>
-    <div class="form-group">
-      <div class="input-group">
-        <span class="input-group-addon"><i class="fa fa-user" style="margin-right: 10px; margin-top: 10px"></i></span>
-        <input type="text" class="form-control" name="Address" placeholder="Address" required="required" ngModel>
-      </div>
-    </div>
-    <div class="form-group">
-      <div class="input-group">
-        <span class="input-group-addon"><i class="fa fa-user" style="margin-right: 10px; margin-top: 10px"></i></span>
-        <select class="form-control" name="Type" ngModel>
-          <option value="Regular">Regular</option>
-          <option value="Student">Student</option>
-          <option value="Pensioner">Pensioner</option>
-        </select>
-      </div>
-    </div>
-    <div class="form-group ">
-      <div class="input-group">
-        <span class="input-group-addon"><i class="fa fa-user" style="margin-right: 10px; margin-top: 10px"></i></span>
-        <input type="file" name="ImageUrl" placeholder="File" ngModel>
-      </div>
-    </div>
-    <div class="form-group">
-    </div>
-    <div class="form-group">
-      <button type="submit" class="btn btn-primary btn-lg">Sign Up</button>
-    </div>
-  </form>
-</div>
+      <div class="card card-body">
+        <form [formGroup]="appUser" (ngSubmit)="onSubmit()">
+          <!--<form #f="ngForm" [formGroup]="AppUser" (ngSubmit)="onSubmit()" ngNativeValidate >-->
+          <div class="form-group">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-user"
+                  style="margin-right: 10px; margin-top: 10px"></i></span>
+              <input placeholder="First Name" id="Name" formControlName="Name" class="form-control" required>
+              <div *ngIf="f.Name.invalid && (f.Name.dirty || f.Name.touched)">
+                <div class="text-danger" *ngIf="f.Name.errors.required">
+                  Name is Required!
+                </div>
+                <div class="text-danger" *ngIf="f.Name.errors.minlength">
+                  Must have 4 characters!
+                </div>
+              </div>
+            </div>
+          </div>
 
+          <div class="form-group">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-user"
+                  style="margin-right: 10px; margin-top: 10px"></i></span>
+              <input placeholder="Last Name" id="LastName" formControlName="LastName" class="form-control" required>
+              <div *ngIf="f.LastName.invalid && (f.LastName.dirty || f.LastName.touched)">
+                <div class="text-danger" *ngIf="f.LastName.errors.required">
+                  Last name is Required!
+                </div>
+                <div class="text-danger" *ngIf="f.LastName.errors.minlength">
+                  Must have 5 characters!
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-user"
+                  style="margin-right: 10px; margin-top: 10px"></i></span>
+              <input type="date" placeholder="Date Of Birth" id="DateOfBirth" formControlName="DateOfBirth"
+                class="form-control" required>
+              <div *ngIf="f.DateOfBirth.invalid && (f.DateOfBirth.dirty || f.DateOfBirth.touched)">
+                <div class="text-danger" *ngIf="f.DateOfBirth.errors.required">
+                  Date Of Birth is Required!
+                </div>
+                <div class="text-danger" *ngIf="f.DateOfBirth.errors.minlength">
+                  Must have 5 characters!
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-paper-plane"
+                  style="margin-right: 10px; margin-top: 10px"></i></span>
+              <input placeholder="Email" id="Email" formControlName="Email" class="form-control" required>
+              <div *ngIf="f.Email.invalid && (f.Email.dirty || f.Email.touched)">
+                <div class="text-danger" *ngIf="f.Email.errors.required">
+                  Email is Required!
+                </div>
+                <div class="text-danger" *ngIf="f.Email.errors.email">
+                  Must have @regex!!
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-key"
+                  style="margin-right: 10px; margin-top: 10px"></i></span>
+              <input type="password" placeholder="Password" id="Password" formControlName="Password"
+                class="form-control" required>
+              <div *ngIf="f.Password.invalid && (f.Password.dirty || f.Password.touched)">
+                <div class="text-danger" *ngIf="f.Password.errors.required">
+                  Last name is Required!
+                </div>
+                <div class="text-danger" *ngIf="f.Password.errors.minlength">
+                  Must have 8 characters!
+                </div>
+                <div class="text-danger" *ngIf="f.Password.errors.hasNumber">
+                  Must have number!
+                </div>
+                <div class="text-danger" *ngIf="f.Password.errors.hasCapitalCase">
+                  Must have Capitala Case!
+                </div>
+                <div class="text-danger" *ngIf="f.Password.errors.hasSmallCase">
+                  Must have Small Case!
+                </div>
+                <div class="text-danger" *ngIf="f.Password.errors.hasSpecialCharacters">
+                  Must have Special Character!
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-key"
+                  style="margin-right: 10px; margin-top: 10px"></i></span>
+              <input type="password" placeholder="Confirm Password" id="ConfirmPassword"
+                formControlName="ConfirmPassword" class="form-control" required>
+
+              <div *ngIf="f.ConfirmPassword.invalid && (f.ConfirmPassword.dirty || f.ConfirmPassword.touched)">
+                <div class="text-danger" *ngIf="f.ConfirmPassword.errors.required">
+                  Confirm is Required!
+                </div>
+                <div class="text-danger" *ngIf="f.ConfirmPassword.errors?.MutchPassword">Password not match</div>
+                <div  class="text-danger" >Password not matched!</div>               
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-user"
+                  style="margin-right: 10px; margin-top: 10px"></i></span>
+              <input placeholder="Address" id="Address" formControlName="Address" class="form-control" required>
+              <div *ngIf="f.Address.invalid && (f.Address.dirty || f.Address.touched)">
+                <div class="text-danger" *ngIf="f.Address.errors.required">
+                  Address is Required!
+                </div>
+                <div class="text-danger" *ngIf="f.Address.errors.minlength">
+                  Must have 6 characters!
+                </div>
+                <div class="text-danger" *ngIf="f.Address.errors.hasNumber">
+                  Must have number!
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-user"
+                  style="margin-right: 10px; margin-top: 10px"></i></span>
+              <select placeholder="Type" id="Type" formControlName="Type" class="form-control" required>
+                <option value="Regular">Regular</option>
+                <option value="Student">Student</option>
+                <option value="Pensioner">Pensioner</option>
+              </select>
+              <div *ngIf="f.Type.invalid && (f.Type.dirty || f.Type.touched)">
+                <div class="text-danger" *ngIf="f.Type.errors.required">
+                  Type is Required!
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-user"
+                  style="margin-right: 10px; margin-top: 10px"></i></span>
+              <input type="file" id="File" formControlName="File">
+            </div>
+          </div>
+          <button type="submit" class="btn btn-default" [disabled]="appUser.invalid ">Submit</button>         
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
