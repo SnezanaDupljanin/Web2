@@ -252,6 +252,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AppUserController.cs" />
     <Compile Include="Controllers\CoefficientController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ItemController.cs" />
@@ -271,6 +272,10 @@
     <Compile Include="Migrations\201906021646415_First11.cs" />
     <Compile Include="Migrations\201906021646415_First11.Designer.cs">
       <DependentUpon>201906021646415_First11.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906062006418_typeChanged.cs" />
+    <Compile Include="Migrations\201906062006418_typeChanged.Designer.cs">
+      <DependentUpon>201906062006418_typeChanged.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
@@ -412,6 +417,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201906021646415_First11.resx">
       <DependentUpon>201906021646415_First11.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906062006418_typeChanged.resx">
+      <DependentUpon>201906062006418_typeChanged.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

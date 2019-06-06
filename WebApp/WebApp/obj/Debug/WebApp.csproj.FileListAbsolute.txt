@@ -749,3 +749,4 @@ C:\Users\Ivana\Desktop\gitProba\Web2\WebApp\WebApp\obj\Debug\WebApp.csproj.Gener
 C:\Users\Ivana\Desktop\gitProba\Web2\WebApp\WebApp\obj\Debug\WebApp.csproj.CoreCompileInputs.cache
 C:\Users\Ivana\Desktop\gitProba\Web2\WebApp\WebApp\obj\Debug\WebApp.dll
 C:\Users\Ivana\Desktop\gitProba\Web2\WebApp\WebApp\obj\Debug\WebApp.pdb
+C:\Users\Ivana\Desktop\gitProba\Web2\WebApp\WebApp\obj\Debug\WebApp.Migrations.typeChanged.resources
