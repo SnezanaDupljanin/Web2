@@ -16,6 +16,7 @@ import { TokenInterceptor } from './interceptors/interceptor';
 import { MapComponent } from './map/map.component';
 import { PriceListComponent } from './price-list/price-list.component';
 import { TimetableComponent } from './timetable/timetable.component';
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { TimetableComponent } from './timetable/timetable.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    AgmCoreModule.forRoot({apiKey: 'AIzaSyDnihJyw_34z5S1KZXp90pfTGAqhFszNJk'}),
 
   ],
   providers: [
