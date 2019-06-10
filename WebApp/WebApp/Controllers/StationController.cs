@@ -10,24 +10,24 @@ using WebApp.Persistence.UnitOfWork;
 
 namespace WebApp.Controllers
 {
-    public class LineController : ApiController
+    public class StationController : ApiController
     {
         private readonly IUnitOfWork unitOfWork;
 
-        public LineController(IUnitOfWork unitOfWork)
+        public StationController(IUnitOfWork unitOfWork)
         {
             this.unitOfWork = unitOfWork;
         }
 
         // GET: api/Item
-        public IEnumerable<Line> GetItems()
+        public IEnumerable<Station> GetStations()
         {
-            return unitOfWork.Lines.GetAll();
+            return unitOfWork.Stations.GetAll();
         }
 
-        // POST: api/Line
-        [ResponseType(typeof(Line))]
-        public IHttpActionResult PostLine(Line line)
+        // POST: api/PriceLists
+        [ResponseType(typeof(Station))]
+        public IHttpActionResult PostStation(Station station)
         {
 
             if (!ModelState.IsValid)
@@ -35,10 +35,10 @@ namespace WebApp.Controllers
                 return BadRequest(ModelState);
             }
 
-            unitOfWork.Lines.Add(line);
+            unitOfWork.Stations.Add(station);
             unitOfWork.Complete();
 
-            return CreatedAtRoute("DefaultApi", new { id = line.Id }, line);
+            return CreatedAtRoute("DefaultApi", new { id = station.Id }, station);
         }
     }
 }
