@@ -5,12 +5,15 @@ import { NgForm } from '@angular/forms';
 import { Price } from '../models/price.model';
 import { PriceListItem } from '../models/priceListItem.model';
 import { collectExternalReferences } from '@angular/compiler';
+import { AppUser } from '../models/appUser.model';
+import { Ticket } from '../models/ticket.model';
 
 @Component({
   selector: 'app-price-list',
   templateUrl: './price-list.component.html',
   styleUrls: ['./price-list.component.css']
 })
+
 export class PriceListComponent implements OnInit {
 
   items: Array<any>;
@@ -26,6 +29,8 @@ export class PriceListComponent implements OnInit {
   studentCoe:number;
   pensionerCoe:number;
   showButton:boolean;
+  user: AppUser;
+  ticket : Ticket;
 
 
   constructor(private serverService: ServerService, private route: ActivatedRoute, private router: Router) {
@@ -35,10 +40,49 @@ export class PriceListComponent implements OnInit {
     this.callGetItems(); 
     this.callGetCoefficients(); 
     this.callGetPrices();
+    this.getUserDetails();
+
     if(localStorage.role ==="AppUser"){
       this.showButton = true;
     }else{
       this.showButton = false;
+    }
+  }
+
+  getUserDetails() : any {
+    this.serverService.getUserDetails()
+    .subscribe(
+      data => {
+        this.user = data;       
+      },
+      err => {
+        console.log(err);
+      }
+    )
+  }
+
+  isDisabledStudent(){
+    if(localStorage.role=='AppUser'){
+      if(this.user.Type === 'Student'){
+        return false;
+      }else{
+        return true;
+      }
+    }else{
+      return false;
+    }
+    
+  }
+
+  isDisabledPensioner(){
+    if(localStorage.role=='AppUser'){
+      if(this.user.Type === 'Pensioner'){
+        return false;
+      }else{
+        return true;
+      }
+    }else{
+      return false;
     }
   }
 
@@ -133,6 +177,24 @@ export class PriceListComponent implements OnInit {
 
   onCheckedPensionerYearly(){
     this.priceYearly = this.prices[3].Price * this.pensionerCoe;
+  }
+
+  buttonBuyTemporal(){
+    this.ticket = new Ticket();
+    this.ticket.TicketType = "Temporal";
+    var id = this.user.Email.split('@')[0];
+    this.ticket.User_Id = id;
+    this.ticket.Valid = true;
+
+    this.serverService.postTicket(this.ticket)
+    .subscribe(
+      data => {
+        console.log("Kupljena karta!!");              
+      },
+      error => {
+        console.log(error);
+      }
+    )
   }
 
 }

@@ -5,6 +5,10 @@ import {HttpClient, HttpParams, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import { LoginUser } from '../models/loginUser.model';
 import { PriceListItem } from '../models/priceListItem.model';
+import { Ticket } from '../models/ticket.model';
+import { Station } from '../models/station.model';
+import { Line } from '../models/line.model';
+import { StationLine } from '../models/stationLine.model';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -53,6 +57,31 @@ export class ServerService {
     return this.httpClient.post("http://localhost:52295/api/Account/Logout", httpOptions);
   }
 
+  getUserDetails() : any {
+    return this.httpClient.get('http://localhost:52295/api/AppUser/0', httpOptions)
+  }
 
+  postTicket(ticket: Ticket): Observable<any>{
+    return this.httpClient.post("http://localhost:52295/api/Ticket", ticket);
+  }
 
+  postStation(station: Station): Observable<any>{
+    return this.httpClient.post("http://localhost:52295/api/Station", station);
+  }
+
+  postLine(line: Line): Observable<any>{
+    return this.httpClient.post("http://localhost:52295/api/Line", line);
+  }
+
+  postStationLine(stationLine:StationLine){
+    return this.httpClient.post("http://localhost:52295/api/StationLine", stationLine);
+  }
+
+  getStations() : Observable<any>{
+    return this.httpClient.get('http://localhost:52295/api/Station');
+  } 
+
+  getStationLines() : Observable<any>{
+    return this.httpClient.get('http://localhost:52295/api/StationLine');
+  } 
 }

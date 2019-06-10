@@ -17,6 +17,7 @@ import { MapComponent } from './map/map.component';
 import { PriceListComponent } from './price-list/price-list.component';
 import { TimetableComponent } from './timetable/timetable.component';
 import { AgmCoreModule } from '@agm/core';
+import { ModalComponent } from './modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { AgmCoreModule } from '@agm/core';
     RegistrationComponent,
     MapComponent,
     PriceListComponent,
-    TimetableComponent
+    TimetableComponent,
+    ModalComponent
 
   ],
   imports: [

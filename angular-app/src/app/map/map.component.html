@@ -3,16 +3,15 @@
     <h1 style="color:rgb(13, 102, 114)" class="text-center">Lines map</h1>
 
   </div>
-  <div style="background-color: rgb(187, 184, 184); opacity: 0.8; margin-top: 10px; margin-left: 0px">
-    <form>
-      <input type="checkbox" name="City" value="City lines" style="margin-left: 510px;" /><span
-        style="font-size: 20px; color: rgb(250, 12, 12); font-weight: bold"> City line</span>
-      <input type="checkbox" name="Suburban" value="Suburban lines" style="margin-left: 50px"><span
-        style="font-size: 20px; color:rgb(250, 12, 12); font-weight: bold"> Suburban lines</span>
-      <input type="submit" value="Show" style="margin-left: 50px" />
-    </form>
+
+  <div style="background-color: rgb(187, 184, 184); opacity: 0.8; margin-top: 10px; margin-left: 0px" class="inline"
+    *ngFor="let line of lineNames">
+    <input type="radio" id="one" [(ngModel)]="radioSelected" name="lineCity" value="{{line}}"
+      (change)="onItemChange1(line)" unchecked />
+    <label for="radio1">{{line}}</label>
   </div>
-  <hr>
+
+  <div style="margin-top: 50px; margin-left:0px">
   <!-- Kreiramo mapu -->
   <agm-map [latitude]="markerInfo.location.latitude" [longitude]="markerInfo.location.longitude" [zoom]="15"
     (mapClick)="placeMarker($event)">
@@ -42,6 +41,29 @@
     </agm-marker>
 
   </agm-map>
-  <button (click)="Draw()" type="button" >Draw</button>
-  <button (click)="myFunc()" type="button" >Add Line</button>
 </div>
+  <div style="background-color: rgb(219, 214, 214); opacity: 0.8; margin-top: 10px; margin-left: 0px">
+    <button (click)="Draw()" class="buttonAdmin button2Admin btn1" type="button">Draw</button>
+    <button (click)="openModal('custom-modal-2')" class="buttonAdmin button2Admin btn2" type="button"> Add Line</button>
+  </div>
+
+
+</div>
+
+<jw-modal id="custom-modal-1">
+  <h1 style="color: red; font-size:16;font-style:bold;margin-left:200px">Creating new station</h1>
+  <p style="font-size: 200%;font-family:'Times New Roman', Times, serif; margin-top: 20px ">Name: <input
+      style="width: 100%;" type="text" [(ngModel)]="bodyText" /></p>
+  <button class="button button1" (click)="closeModal('custom-modal-1');">Close</button>
+  <button class="button button2" (click)="createStation()">Create</button>
+</jw-modal>
+
+<jw-modal id="custom-modal-2">
+  <h1 style="color: red; font-size:16;font-style:bold;margin-left:200px">Creating new line</h1>
+  <p style="font-size: 200%;font-family:'Times New Roman', Times, serif; margin-top: 20px ">Name: <input
+      style="width: 100%;" type="text" [(ngModel)]="bodyText1" /></p>
+  <p style="font-size: 200%;font-family:'Times New Roman', Times, serif; margin-top: 20px ">Direction: <input
+      style="width: 100%;" type="text" [(ngModel)]="bodyText2" /></p>
+  <button class="button button1" (click)="closeModal('custom-modal-2');">Close</button>
+  <button class="button button2" (click)="createLine()">Create</button>
+</jw-modal>
