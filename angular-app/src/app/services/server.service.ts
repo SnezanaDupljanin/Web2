@@ -5,7 +5,6 @@ import {HttpClient, HttpParams, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import { LoginUser } from '../models/loginUser.model';
 import { PriceListItem } from '../models/priceListItem.model';
-import { Ticket } from '../models/ticket.model';
 import { Station } from '../models/station.model';
 import { Line } from '../models/line.model';
 import { StationLine } from '../models/stationLine.model';
@@ -26,6 +25,7 @@ export class ServerService {
   registerAppUser(appUser: any) : any {
     return this.httpClient.post("http://localhost:52295/api/Account/Register", appUser);
   }
+
   getTheToken(loginUser : LoginUser) : Observable<any>{
     let headers = new HttpHeaders();
     headers = headers.append('Content-type','application/x-www-form-urlencoded');
@@ -49,20 +49,21 @@ export class ServerService {
     return this.httpClient.get('http://localhost:52295/api/Line');
   } 
 
+  getStations() : Observable<any>{
+    return this.httpClient.get('http://localhost:52295/api/Station');
+  } 
+
+  getStationLines() : Observable<any>{
+    return this.httpClient.get('http://localhost:52295/api/StationLine');
+  } 
+
+
   getTimeTable() : Observable<any>{
     return this.httpClient.get('http://localhost:52295/api/TimeTable');
   }
 
   logOut() : any{
     return this.httpClient.post("http://localhost:52295/api/Account/Logout", httpOptions);
-  }
-
-  getUserDetails() : any {
-    return this.httpClient.get('http://localhost:52295/api/AppUser/0', httpOptions)
-  }
-
-  postTicket(ticket: Ticket): Observable<any>{
-    return this.httpClient.post("http://localhost:52295/api/Ticket", ticket);
   }
 
   postStation(station: Station): Observable<any>{
@@ -77,11 +78,20 @@ export class ServerService {
     return this.httpClient.post("http://localhost:52295/api/StationLine", stationLine);
   }
 
-  getStations() : Observable<any>{
-    return this.httpClient.get('http://localhost:52295/api/Station');
-  } 
+  putLine(Line_Id : number, line: Line): Observable<any>{
+    return this.httpClient.put(`http://localhost:52295/api/Line/${Line_Id}`, line );
+  }
 
-  getStationLines() : Observable<any>{
-    return this.httpClient.get('http://localhost:52295/api/StationLine');
-  } 
+  putStation(Station_Id : number, station: Station): Observable<any>{
+    return this.httpClient.put(`http://localhost:52295/api/Station/${Station_Id}`, station );
+  }
+
+  deleteLine(Line_Id :number) :any{
+    return this.httpClient.delete(`http://localhost:52295/api/Line/${Line_Id}`);
+  }
+
+  deleteStation(Station_Id :number) :any{
+    return this.httpClient.delete(`http://localhost:52295/api/Station/${Station_Id}`);
+  }
+
 }

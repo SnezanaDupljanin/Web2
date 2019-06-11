@@ -11,42 +11,90 @@
     <label for="radio1">{{line}}</label>
   </div>
 
-  <div style="margin-top: 50px; margin-left:0px">
-  <!-- Kreiramo mapu -->
-  <agm-map [latitude]="markerInfo.location.latitude" [longitude]="markerInfo.location.longitude" [zoom]="15"
-    (mapClick)="placeMarker($event)">
-    <agm-marker [latitude]="markerInfo.location.latitude" [longitude]="markerInfo.location.longitude"
-      [title]="markerInfo.title" [label]="markerInfo.label" [iconUrl]="markerInfo.iconUrl">
+  <div style="margin-top: 50px; margin-left:0px;display: flex">
+    <!-- Kreiramo mapu -->
+    <agm-map id="map" [latitude]="markerInfo.location.latitude" [longitude]="markerInfo.location.longitude" [zoom]="15"
+      (mapClick)="placeMarker($event)">
+      <agm-marker [latitude]="markerInfo.location.latitude" [longitude]="markerInfo.location.longitude"
+        [title]="markerInfo.title" [label]="markerInfo.label" [iconUrl]="markerInfo.iconUrl">
 
-      <!-- Svakom markeru dodajemo info-window (Nije obavezno!)-->
-      <agm-info-window [latitude]="markerInfo.location.latitude" [longitude]="markerInfo.location.longitude">
+        <!-- Svakom markeru dodajemo info-window (Nije obavezno!)-->
+        <agm-info-window [latitude]="markerInfo.location.latitude" [longitude]="markerInfo.location.longitude">
 
-        <!-- U info-window stavljamo html -->
-        <span style="font-size: 16px;font-family:'Times New Roman'">Fakultet tehničkih nauka</span>
-        <br />
-        <span style="font-family:'Times New Roman'; color:gray;"><strong>Jugodrvo</strong></span>
-        <span style="font-family:'Times New Roman'; color:gray;">Bulevar oslobođenja 131</span>
-        <a [href]="markerInfo.link">See the site.</a>
-      </agm-info-window>
+          <!-- U info-window stavljamo html -->
+          <span style="font-size: 16px;font-family:'Times New Roman'">Fakultet tehničkih nauka</span>
+          <br />
+          <span style="font-family:'Times New Roman'; color:gray;"><strong>Jugodrvo</strong></span>
+          <span style="font-family:'Times New Roman'; color:gray;">Bulevar oslobođenja 131</span>
+          <a [href]="markerInfo.link">See the site.</a>
+        </agm-info-window>
 
-    </agm-marker>
+      </agm-marker>
 
-    <agm-polyline [strokeColor]="polyline.color">
-      <agm-polyline-point *ngFor="let point of polyline.path" [latitude]="point.latitude" [longitude]="point.longitude">
-      </agm-polyline-point>
-    </agm-polyline>
+      <agm-polyline [strokeColor]="polyline.color">
+        <agm-polyline-point *ngFor="let point of polyline.path" [latitude]="point.latitude"
+          [longitude]="point.longitude">
+        </agm-polyline-point>
+      </agm-polyline>
 
-    <agm-marker *ngFor="let point of polyline.path" [latitude]="point.latitude" [longitude]="point.longitude"
-      [iconUrl]="polyline.icon">
-    </agm-marker>
+      <agm-marker (markerClick)="clickedMarker(point)" *ngFor="let point of polyline.path" [latitude]="point.latitude"
+        [longitude]="point.longitude" [iconUrl]="polyline.icon">
+        <agm-info-window [latitude]="markerInfo.location.latitude" [longitude]="markerInfo.location.longitude">
 
-  </agm-map>
-</div>
-  <div style="background-color: rgb(219, 214, 214); opacity: 0.8; margin-top: 10px; margin-left: 0px">
-    <button (click)="Draw()" class="buttonAdmin button2Admin btn1" type="button">Draw</button>
-    <button (click)="openModal('custom-modal-2')" class="buttonAdmin button2Admin btn2" type="button"> Add Line</button>
+            <!-- U info-window stavljamo html -->
+            <span style="font-size: 16px;font-family:'Times New Roman'">{{stationEdit.Name}}</span>
+            <br />
+            <span style="font-family:'Times New Roman'; color:gray;">{{stationEdit.Address}}</span>
+          </agm-info-window>
+      </agm-marker>
+    </agm-map>
+    <div id="container">
+      <div id="topdiv" *ngIf="showEditLine">
+        <form #f="ngForm" enctype="multipart/form-data" (ngSubmit)="UpdateLine()" ngNativeValidate>
+          <label style="margin-left: 150px">Line</label><br />
+          Name:
+          <span class="inlineinput">
+            <input type="text" id="name" style='display: inline' name="fname" [(ngModel)]="lineEdit.Name">
+          </span>
+          Direcion:
+          <span class="inlineinput">
+            <input type="text" id="dir" style='display: inline;' name="dir" [(ngModel)]="lineEdit.Direction">
+          </span>
+          <span class="inlineinput">
+            <input type="submit" style='display: inline;' id="dir" style='display: inline;'>
+          </span>
+        </form>
+      </div>
+      <div id="maindiv" *ngIf="showEditStation && showAdminDiv">
+        <form #f="ngForm" enctype="multipart/form-data" (ngSubmit)="UpdateStation()" ngNativeValidate>
+          <label>
+            Name:
+            <input type="text" name="names" [(ngModel)]="stationEdit.Name">
+          </label>
+          <label>
+            Address:
+            <input type="text" name="add" [(ngModel)]="stationEdit.Address">
+          </label>
+          <label>
+            Coordinate X:
+            <input type="text" name="cooX" [(ngModel)]="stationEdit.CoordinateX">
+          </label>
+          <label>
+            Coordinate Y:
+            <input type="text" name="cooY" [(ngModel)]="stationEdit.CoordinateY">
+          </label> <br>
+          <input type="submit" id="dir">
+        </form>
+        <button (click)="deleteStation()" type="button">Delete station</button>
+      </div>
+    </div>
   </div>
 
+  <div *ngIf="showAdminDiv" style="background-color: rgb(219, 214, 214); opacity: 0.8; margin-top: 10px; margin-left: 0px">
+    <button (click)="editLine()" class="buttonAdmin button2Admin btn1" type="button">Edit</button>
+    <button (click)="openModal('custom-modal-2')" class="buttonAdmin button2Admin btn2" type="button"> Add Line</button>
+    <button (click)="deleteLine()" class="buttonAdmin button2Admin btn2" type="button"> Delete Line</button>
+  </div>
 
 </div>
 

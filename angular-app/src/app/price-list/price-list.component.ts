@@ -197,4 +197,57 @@ export class PriceListComponent implements OnInit {
     )
   }
 
+  buttonBuyDaily(){
+    this.ticket = new Ticket();
+    this.ticket.TicketType = "Daily";
+    var id = this.user.Email.split('@')[0];
+    this.ticket.User_Id = id;
+    this.ticket.Valid = true;
+
+    this.serverService.postTicket(this.ticket)
+    .subscribe(
+      data => {
+        console.log("Kupljena karta!!");              
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  }
+
+  buttonBuyMonthly(){
+    this.ticket = new Ticket();
+    this.ticket.TicketType = "Monthly";
+    var id = this.user.Email.split('@')[0];
+    this.ticket.User_Id = id;
+    this.ticket.Valid = true;
+
+    this.serverService.postTicket(this.ticket)
+    .subscribe(
+      data => {
+        console.log("Kupljena karta!!");              
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  }
+
+  buttonBuyYearly(){
+    this.ticket = new Ticket();
+    this.ticket.TicketType = "Yearly";
+    var id = this.user.Email.split('@')[0];
+    this.ticket.User_Id = id;
+    this.ticket.Valid = true;
+
+    this.serverService.postTicket(this.ticket)
+    .subscribe(
+      data => {
+        console.log("Kupljena karta!!");              
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  }
 }

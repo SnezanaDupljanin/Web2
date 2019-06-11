@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -40,5 +41,68 @@ namespace WebApp.Controllers
 
             return CreatedAtRoute("DefaultApi", new { id = station.Id }, station);
         }
+
+        // PUT: api/Station/5
+        [ResponseType(typeof(void))]
+        public IHttpActionResult PutStation(int id, Station station)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            if (id != station.Id)
+            {
+                return BadRequest();
+            }
+
+            try
+            {
+                unitOfWork.Stations.Update(station);
+                unitOfWork.Complete();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!StationExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return StatusCode(HttpStatusCode.NoContent);
+        }
+
+        private bool StationExists(int id)
+        {
+
+            bool ret = unitOfWork.Stations.Get(id) != null;
+
+            return ret;
+        }
+
+        // DELETE: api/Line/5
+        [ResponseType(typeof(Line))]
+        public IHttpActionResult DeleteStation(int id)
+        {
+
+            Station station = unitOfWork.Stations.Get(id);
+            if (station == null)
+            {
+                return NotFound();
+            }
+
+            unitOfWork.Stations.Remove(station);
+            unitOfWork.Complete();
+
+            unitOfWork.StationLines.RemoveRange(unitOfWork.StationLines.Find(x => x.Station_Id == id));
+            unitOfWork.Complete();
+
+            return Ok(station);
+        }
+
     }
 }

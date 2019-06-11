@@ -8,6 +8,7 @@ import { ModalService } from '../services/modal.service';
 import { Station } from '../models/station.model';
 import { Line } from '../models/line.model';
 import { StationLine } from '../models/stationLine.model';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-map',
@@ -22,8 +23,6 @@ export class MapComponent {
   lineNames: Array<string> = [];
   lines: Array<any> = []; //sve linije iz baze
   stations: Array<any>=[]; //sve stanice iz baze
-  showDivCityLines : boolean;
-  showDivSuburbanLines : boolean;
   radioSelected:string; //selektovana linija
   radioSel:string; //selektovana linija
   line1 : any;
@@ -31,7 +30,8 @@ export class MapComponent {
   stationLines:Array<any> = []; 
   stationIds : Array<number>=[];
   stationsToDraw:Array<Station> = [];
-
+  showEditLine:boolean;
+  showEditStation:boolean;
   markerInfo: MarkerInfo;
   public polyline: Polyline;
   public zoom: number;
@@ -48,6 +48,11 @@ export class MapComponent {
   lineId:number;
   stationId:number;
   stationLine:StationLine;
+  lineEdit:Line;
+  stationEdit:Station = new Station();
+  stationEdit_ID : number;
+  showAdminDiv : boolean;
+  private map;
 
   constructor(private ngZone: NgZone, private serverService: ServerService, private mapsAPILoader: MapsAPILoader, private modalService: ModalService) {
 
@@ -60,6 +65,12 @@ export class MapComponent {
 
   ngOnInit() {
     this.bodyText = '';
+    if(localStorage.role=="Admin"){
+      this.showAdminDiv = true;
+    }else{
+      this.showAdminDiv = false;
+
+    }
     this.callGetLines();
     this.callGetStations();
     this.callGetStationLine();
@@ -74,10 +85,15 @@ export class MapComponent {
 
   placeMarker($event) {
 
+    if(this.showAdminDiv){
     this.openModal('custom-modal-1');
     this.getAddress($event.coords.lat, $event.coords.lng);
     this.locationStation = new GeoLocation($event.coords.lat, $event.coords.lng);
+    this.markerInfo = new MarkerInfo(new GeoLocation($event.coords.lat, $event.coords.lng),
+      "assets/bg.png",
+      "Jugodrvo", "", "http://ftn.uns.ac.rs/691618389/fakultet-tehnickih-nauka");
     console.log(this.polyline)
+  }
   }
 
   getAddress(latitude, longitude) {
@@ -104,7 +120,7 @@ export class MapComponent {
   closeModal(id: string) {
     this.modalService.close(id);
   }
-
+ 
 
   createStation(){
 
@@ -166,7 +182,9 @@ export class MapComponent {
   }
 
   createLine(){
-
+    this.polyline.path = [];
+    this.stationIds = [];
+    this.stationsToDraw = [];
     this.line = new Line();
     this.line.Name = this.bodyText1;
     this.line.Direction = this.bodyText2;
@@ -226,6 +244,8 @@ export class MapComponent {
     var direction = line.substring(this.radioSel.length-1);
     this.line_ID = this.lines.find(Line => Line.Name == lineName && Line.Direction==direction).Id;
 
+    this.lineEdit = this.lines.find(Line => Line.Name == lineName && Line.Direction==direction);
+
     this.stationLines.forEach(sl=>{
       if(sl.Line_Id==this.line_ID)
         this.stationIds.push(sl.Station_Id);
@@ -238,5 +258,69 @@ export class MapComponent {
     this.stationsToDraw.forEach(s=>{
       this.polyline.addLocation(new GeoLocation(s.CoordinateX,s.CoordinateY));
     });
+  }
+
+  editLine(){
+    this.showEditLine = true;
+  }
+
+  UpdateLine()
+  {
+    this.serverService.putLine(this.line_ID, this.lineEdit)
+    .subscribe(
+      data => {
+        //this.stations = data;        
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  }
+
+  UpdateStation()
+  {
+    this.serverService.putStation(this.stationEdit_ID, this.stationEdit)
+    .subscribe(
+      data => {
+        //this.stations = data;        
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  }
+
+  clickedMarker(point) {
+   this.stations.forEach(x=>{
+     if(x.CoordinateX==point.latitude && x.CoordinateY==point.longitude){
+       this.stationEdit = x; 
+       this.stationEdit_ID = x.Id;    
+     }
+   });
+   this.showEditStation = true;
+  }
+
+  deleteLine(){
+    this.serverService.deleteLine(this.line_ID)
+    .subscribe(
+      data => {
+        console.log("OK");     
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  }
+
+  deleteStation(){
+    this.serverService.deleteStation(this.stationEdit_ID)
+    .subscribe(
+      data => {
+        console.log("OK");     
+      },
+      error => {
+        console.log(error);
+      }
+    )
   }
 }
