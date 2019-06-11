@@ -18,6 +18,7 @@ import { PriceListComponent } from './price-list/price-list.component';
 import { TimetableComponent } from './timetable/timetable.component';
 import { AgmCoreModule } from '@agm/core';
 import { ModalComponent } from './modal/modal.component';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { ModalComponent } from './modal/modal.component';
     MapComponent,
     PriceListComponent,
     TimetableComponent,
-    ModalComponent
+    ModalComponent,
+    EditProfileComponent
 
   ],
   imports: [

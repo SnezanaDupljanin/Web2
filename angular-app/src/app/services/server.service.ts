@@ -8,6 +8,9 @@ import { PriceListItem } from '../models/priceListItem.model';
 import { Station } from '../models/station.model';
 import { Line } from '../models/line.model';
 import { StationLine } from '../models/stationLine.model';
+import { Ticket } from '../models/ticket.model';
+import { tick } from '@angular/core/testing';
+import { AppUser } from '../models/appUser.model';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -61,7 +64,9 @@ export class ServerService {
   getTimeTable() : Observable<any>{
     return this.httpClient.get('http://localhost:52295/api/TimeTable');
   }
-
+  getUserDetails(): any{
+    return this.httpClient.get('http://localhost:52295/api/AppUser/0', httpOptions);
+  }
   logOut() : any{
     return this.httpClient.post("http://localhost:52295/api/Account/Logout", httpOptions);
   }
@@ -78,6 +83,10 @@ export class ServerService {
     return this.httpClient.post("http://localhost:52295/api/StationLine", stationLine);
   }
 
+  postTicket(ticket:Ticket): Observable<any>{
+    return this.httpClient.post("http://localhost:52295/api/Ticke", ticket);
+  }
+
   putLine(Line_Id : number, line: Line): Observable<any>{
     return this.httpClient.put(`http://localhost:52295/api/Line/${Line_Id}`, line );
   }
@@ -85,7 +94,14 @@ export class ServerService {
   putStation(Station_Id : number, station: Station): Observable<any>{
     return this.httpClient.put(`http://localhost:52295/api/Station/${Station_Id}`, station );
   }
-
+  putUser(userID : string, user: AppUser): Observable<any>{
+    let header = new HttpHeaders();
+    header.append('enctype', 'multipart/form-data');
+    let body = new FormData();
+    body.append('user', JSON.stringify(user));
+    
+    return this.httpClient.put(`http://localhost:52295/api/AppUser/1`,  body,{'headers' : header}  );
+  }
   deleteLine(Line_Id :number) :any{
     return this.httpClient.delete(`http://localhost:52295/api/Line/${Line_Id}`);
   }
