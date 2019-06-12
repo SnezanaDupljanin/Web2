@@ -94,6 +94,9 @@ export class ServerService {
   putStation(Station_Id : number, station: Station): Observable<any>{
     return this.httpClient.put(`http://localhost:52295/api/Station/${Station_Id}`, station );
   }
+  putTimeTable(id_TT:number, s: string): any{
+    return this.httpClient.put(`http://localhost:52295/api/TimeTable/${id_TT}`, s );
+  }
   putUser(userID : string, user: AppUser): Observable<any>{
     let header = new HttpHeaders();
     header.append('enctype', 'multipart/form-data');
@@ -109,5 +112,7 @@ export class ServerService {
   deleteStation(Station_Id :number) :any{
     return this.httpClient.delete(`http://localhost:52295/api/Station/${Station_Id}`);
   }
-
+  deleteTime(Time_ID :number) :any{
+    return this.httpClient.delete(`http://localhost:52295/api/TimeTable/${Time_ID}`);
+  }
 }

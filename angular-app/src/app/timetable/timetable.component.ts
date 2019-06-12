@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ServerService } from '../services/server.service';
 import {Router, ActivatedRoute} from '@angular/router';
 import { LineToLineMappedSource } from 'webpack-sources';
+import { stringify } from '@angular/compiler/src/util';
 
 @Component({
   selector: 'app-timetable',
@@ -28,12 +29,71 @@ export class TimetableComponent implements OnInit {
   days:Array<string> = ["Weekday","Saturday","Sunday"];
   showDivDay:boolean;
   showdivTimes:boolean;
+  TT: Array<any> =[];
+  line_ID:number;
+  selectedTime:string;
+  showDivEditTime:boolean;
+  newValueTT:any;
+  ss:string;
+  sss:string;
+  ssss:string;
+  showDeleteAdmin:boolean;
+  showEditAdmin:boolean;
+  
 
   ngOnInit() {
-
+    
     this.callGetLines(); 
     this.callGetTimeTable();
+    if(localStorage.role=="Admin"){
+      this.showDeleteAdmin = true;
+      this.showEditAdmin = true;
+    }else{
+      this.showDeleteAdmin = false;
+      this.showEditAdmin = false;
+
+    }
    
+  }
+  Delete()
+  {
+    this.serverService.deleteTime(this.line_ID)
+      .subscribe(
+        data => {
+          // this.lines = data; 
+          console.log('ok');   
+          this.router.navigate(['/TimeTable']);    
+        },
+        error => {
+          console.log(error);
+        }
+      )
+  }
+  Edit(t: string)
+  {
+    this.selectedTime = t;
+    this.showDivEditTime =true;
+  }
+  Close()
+  {
+    this.showDivEditTime =false;
+  }
+  Edit2()
+  {
+    this.ss= this.selectedTime;
+    this.sss = this.newValueTT;
+    this.ssss = this.radioSelectedString.replace(this.ss, this.sss);
+
+    this.serverService.putTimeTable(this.line_ID, this.ssss)
+    .subscribe(
+      data => {
+        //this.lines = data; 
+        console.log('ok');       
+      },
+      error => {
+        console.log(error);
+      }
+    )
   }
 
   callGetLines(){
@@ -57,7 +117,8 @@ export class TimetableComponent implements OnInit {
             if(x.Type == "Gradski"){
               var nameLine = this.lines.find(line => line.Id === x.Line_Id).Name;
               var directionLine = this.lines.find(line => line.Id === x.Line_Id).Direction;
-              if(this.cityLines.indexOf(nameLine+directionLine)=== -1){
+              var a = nameLine+directionLine;
+              if(this.cityLines.indexOf(a)== -1){
                 this.cityLines.push(nameLine + directionLine);
               }
 
@@ -100,10 +161,12 @@ export class TimetableComponent implements OnInit {
   onItemChange1(line){
     this.radioSel = this.cityLines.find(Item => Item === this.radioSelected);
     var lineName = line.substring(0, this.radioSel.length-1);
-    var line_ID = this.lines.find(Line => Line.Name == lineName).Id;
-    var times = this.timeTable.find(TT=>TT.Line_Id===line_ID && TT.Day===this.radioSelDay).Times;
+    var dir = line.substring(this.radioSel.length-1);
+    this.line_ID = this.lines.find(Line => Line.Name == lineName && Line.Direction == dir).Id;
+    var times = this.timeTable.find(TT=>TT.Line_Id===this.line_ID && TT.Day===this.radioSelDay).Times;
     this.showdivTimes = true; 
     this.radioSelectedString = times;
+    this.TT = this.radioSelectedString.split(';');
   }
 
   onItemChange2(line){
