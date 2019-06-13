@@ -84,7 +84,7 @@ export class ServerService {
   }
 
   postTicket(ticket:Ticket): Observable<any>{
-    return this.httpClient.post("http://localhost:52295/api/Ticke", ticket);
+    return this.httpClient.post("http://localhost:52295/api/Ticket", ticket);
   }
 
   putLine(Line_Id : number, line: Line): Observable<any>{
@@ -119,6 +119,15 @@ export class ServerService {
   getAllUsers() : Observable<any>{
     
     return this.httpClient.get('http://localhost:52295/api/AppUser');
+  }
+
+  getAllTickets() : Observable<any>{
+    
+    return this.httpClient.get('http://localhost:52295/api/Ticket');
+  }
+
+  updateTicket(Ticket_Id : number, ticket: Ticket) : Observable<any>{
+    return this.httpClient.put(`http://localhost:52295/api/Ticket/${Ticket_Id}`, ticket );
   }
 
 }

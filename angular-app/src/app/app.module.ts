@@ -20,6 +20,7 @@ import { AgmCoreModule } from '@agm/core';
 import { ModalComponent } from './modal/modal.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { VerifyProfileComponent } from './verify-profile/verify-profile.component';
+import { ValidateTicketComponent } from './validate-ticket/validate-ticket.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { VerifyProfileComponent } from './verify-profile/verify-profile.componen
     TimetableComponent,
     ModalComponent,
     EditProfileComponent,
-    VerifyProfileComponent
+    VerifyProfileComponent,
+    ValidateTicketComponent
 
   ],
   imports: [

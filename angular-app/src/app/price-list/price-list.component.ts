@@ -63,7 +63,7 @@ export class PriceListComponent implements OnInit {
 
   isDisabledStudent(){
     if(localStorage.role=='AppUser'){
-      if(this.user.Type === 'Student'){
+      if(this.user.Type == 'Student'){
         return false;
       }else{
         return true;
@@ -76,7 +76,7 @@ export class PriceListComponent implements OnInit {
 
   isDisabledPensioner(){
     if(localStorage.role=='AppUser'){
-      if(this.user.Type === 'Pensioner'){
+      if(this.user.Type == 'Pensioner'){
         return false;
       }else{
         return true;
