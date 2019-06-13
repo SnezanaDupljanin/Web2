@@ -7,6 +7,7 @@ import {PriceListComponent} from './price-list/price-list.component'
 import {TimetableComponent} from './timetable/timetable.component'
 import { VerifyProfileComponent } from './verify-profile/verify-profile.component';
 import { ValidateTicketComponent } from './validate-ticket/validate-ticket.component';
+import { CanActivateViaControllerGuard } from './guard/controller.guard';
 
 const routes: Routes = [
   
@@ -36,12 +37,14 @@ const routes: Routes = [
 
   { 
     path: 'Verify', 
-    component: VerifyProfileComponent 
+    component: VerifyProfileComponent,
+    canActivate: [CanActivateViaControllerGuard]
   },
 
   { 
     path: 'Validate', 
-    component: ValidateTicketComponent 
+    component: ValidateTicketComponent,
+    canActivate: [CanActivateViaControllerGuard] 
   },
 
 ];

@@ -11,6 +11,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {NotificationService} from './services/notification.service'
 
+import {CanActivateViaAdminGuard} from './guard/admin.guard';
+import {CanActivateViaUserGuard} from './guard/user.guard';
+import {CanActivateViaControllerGuard} from './guard/controller.guard';
+
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './interceptors/interceptor';
 import { MapComponent } from './map/map.component';
@@ -46,6 +50,11 @@ import { ValidateTicketComponent } from './validate-ticket/validate-ticket.compo
 
   ],
   providers: [
+
+  CanActivateViaControllerGuard,
+  CanActivateViaUserGuard,
+  CanActivateViaAdminGuard,
+
   NotificationService,
   {
     provide: HTTP_INTERCEPTORS,
