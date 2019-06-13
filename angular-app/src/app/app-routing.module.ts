@@ -5,13 +5,10 @@ import { RegistrationComponent } from './registration/registration.component';
 import {MapComponent} from './map/map.component';
 import {PriceListComponent} from './price-list/price-list.component'
 import {TimetableComponent} from './timetable/timetable.component'
+import { VerifyProfileComponent } from './verify-profile/verify-profile.component';
 
 const routes: Routes = [
-  {
-    path: "",
-    redirectTo: 'home',
-    pathMatch: 'full'
-  },
+  
   { 
     path: 'Login', 
     component: LoginComponent 
@@ -34,6 +31,11 @@ const routes: Routes = [
   { 
     path: 'TimeTable', 
     component: TimetableComponent 
+  },
+
+  { 
+    path: 'Verify', 
+    component: VerifyProfileComponent 
   },
 
 ];

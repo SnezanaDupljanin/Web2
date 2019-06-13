@@ -1,0 +1,51 @@
+<br>
+<div class="container" *ngFor="let user of unapprovedUsers">
+  <div class="row">
+    <div class="col-md-9">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-12 lead">User profile
+              <hr>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4 text-center">
+              <img class="img-circle avatar avatar-original" style="-webkit-user-select:none; 
+              display:block; margin:auto; width: 150px; height: 150px" src="assets/icon.png">
+            </div>
+            <div class="col-md-8">
+              <div class="row">
+                <div class="col-md-12">
+                  <h1 class="only-bottom-margin">{{user.Name+" "+user.LastName}}</h1>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <span class="text-muted">Email:</span> {{user.Email}}<br>
+                  <span class="text-muted">Birth date:</span> {{user.DateOfBirth}}<br>
+                  <span class="text-muted">Active:</span>{{user.Active}}<br><br>
+                  <small class="text-muted">{{user.Type}}</small>
+                </div>
+              
+                  <div class="">
+                    <img  style="
+                    width: 150px; height: 150px;margin-top: 1px" src="{{user.ImageUrl}}">
+                  </div>
+                  
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <hr><button style="margin-left: 300px" (click)="approveUser(user)" class="btn btn-default "><i
+                  class="glyphicon glyphicon-pencil" ></i> Approve </button>
+              <button style="margin-left: 100px" (click)="refuseUser(user)" class="btn btn-default "><i class="glyphicon glyphicon-pencil"></i>Refuse </button>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

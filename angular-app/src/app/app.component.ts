@@ -11,8 +11,18 @@ import { isGeneratedFile } from '@angular/compiler/src/aot/util';
 
 export class AppComponent {
   title = 'angular-app';
+  divCOntroler : boolean;
 
   constructor(private serverService: ServerService, private router: Router){}
+
+  ngOnInit(){
+    this.router.navigate([this.router.url]);
+    if(localStorage.role=="Controller"){
+      this.divCOntroler = true;
+    }else{
+      this.divCOntroler = false;
+    }
+  }
 
   public showLogIn(){
     if(!localStorage.jwt){
@@ -23,6 +33,7 @@ export class AppComponent {
   }
 
   public showLogOut(){
+    
     if(localStorage.jwt){
         return true;
     }else{
@@ -34,7 +45,7 @@ export class AppComponent {
     this.serverService.logOut()
     .subscribe(
       data => {
-
+        this.divCOntroler = false;
         localStorage.clear();
         this.router.navigate(['/Login']);     
       },

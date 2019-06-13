@@ -23,6 +23,10 @@ export class RegistrationComponent {
   public frmSignup: FormGroup;
   user: AppUser;
 
+  selectedFile :any;
+  localUrl: any[];
+  imageShow : any;
+
   appUser = this.fb.group({
     Name: ["",[Validators.required,Validators.minLength(4)]],
     LastName: ["",[Validators.required,
@@ -41,13 +45,24 @@ export class RegistrationComponent {
       Validators.minLength(8)
     ]],
     ConfirmPassword:["",[Validators.required]],
-    File:[""],
+    ImageUrl:[""],
   }, {
     validator: PasswordValidation.MatchPassword // your validation method
   });
 
   constructor(private fb: FormBuilder, private serverService: ServerService, private router: Router, private notificationService: NotificationService) {
   }
+
+  onFileChanged(event)
+  {
+    //this.selectedFile = event.target.value;
+    this.selectedFile = event.target.files[0]
+    var reader = new FileReader();
+    reader.readAsDataURL(event.target.files[0]);
+    reader.onload = (event) => {
+     this.imageShow = (<FileReader>event.target).result;
+  }
+}
 
   onSubmit() {
     if(this.appUser != null)
@@ -60,7 +75,7 @@ export class RegistrationComponent {
       this.user.Password = this.appUser.value.Password;
       this.user.ConfirmPassword = this.appUser.value.ConfirmPassword;
       this.user.DateOfBirth = this.appUser.value.DateOfBirth;
-      this.user.ImageUrl = this.appUser.value.ImageUrl;
+      this.user.ImageUrl = this.imageShow;
       this.user.Type = this.appUser.value.Type;
 
       this.Registrate(this.user);

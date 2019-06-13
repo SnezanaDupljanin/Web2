@@ -115,4 +115,10 @@ export class ServerService {
   deleteTime(Time_ID :number) :any{
     return this.httpClient.delete(`http://localhost:52295/api/TimeTable/${Time_ID}`);
   }
+
+  getAllUsers() : Observable<any>{
+    
+    return this.httpClient.get('http://localhost:52295/api/AppUser');
+  }
+
 }

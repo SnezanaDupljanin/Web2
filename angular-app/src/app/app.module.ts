@@ -19,6 +19,7 @@ import { TimetableComponent } from './timetable/timetable.component';
 import { AgmCoreModule } from '@agm/core';
 import { ModalComponent } from './modal/modal.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { VerifyProfileComponent } from './verify-profile/verify-profile.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
     PriceListComponent,
     TimetableComponent,
     ModalComponent,
-    EditProfileComponent
+    EditProfileComponent,
+    VerifyProfileComponent
 
   ],
   imports: [

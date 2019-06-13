@@ -35,6 +35,12 @@
     </div>
   </nav>
 
+  <div *ngIf="divCOntroler" style="background-color: rgb(219, 214, 214); opacity: 0.8; margin-top: 10px; margin-left: 0px">
+    <button routerLink="/Verify" class="buttonAdmin button2Admin btn1" type="button">Verify profile</button>
+    <button routerLink="" class="buttonAdmin button2Admin btn2" type="button">Validate ticket</button>
+
+  </div>
+
   <router-outlet></router-outlet>
 
 </div>

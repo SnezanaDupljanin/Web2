@@ -37,9 +37,8 @@ export class LoginComponent implements OnInit {
         console.log(role);
         localStorage.setItem('jwt',jwt)
         localStorage.setItem('role',role)
-        this.router.navigate(['']);
-        
-        //this.notificationService.startConnection();
+        //this.router.navigate(['']);
+        this.router.navigate(['']).then(() => window.location.reload()); //OVAKO REFRESUJEM STRANICUUUUUUUU
       },
       err => {
         this.validationMessage = err.error.error_description;
