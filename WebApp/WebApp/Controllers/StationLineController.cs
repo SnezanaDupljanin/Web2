@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading;
 using System.Web.Http;
 using System.Web.Http.Description;
 using WebApp.Models;
@@ -13,6 +14,7 @@ namespace WebApp.Controllers
     public class StationLineController : ApiController
     {
         private readonly IUnitOfWork unitOfWork;
+        private Mutex mutex = new Mutex();
 
         public StationLineController(IUnitOfWork unitOfWork)
         {
@@ -20,9 +22,12 @@ namespace WebApp.Controllers
         }
 
         // POST: api/StationLine
+        [Authorize(Roles = "Admin")]
         [ResponseType(typeof(StationLine))]
         public IHttpActionResult PostStationLine(StationLine stationLine)
         {
+
+            mutex.WaitOne();
 
             if (!ModelState.IsValid)
             {
@@ -32,6 +37,8 @@ namespace WebApp.Controllers
             unitOfWork.StationLines.Add(stationLine);
             unitOfWork.Complete();
 
+            mutex.ReleaseMutex();
+
             return CreatedAtRoute("DefaultApi", new { id = stationLine.Id }, stationLine);
         }
 
@@ -39,7 +46,10 @@ namespace WebApp.Controllers
         public IEnumerable<StationLine> GetStationLines()
         {
 
-            return unitOfWork.StationLines.GetAll();
+            mutex.WaitOne();
+            IEnumerable<StationLine> stationLines = unitOfWork.StationLines.GetAll();
+            mutex.ReleaseMutex();
+            return stationLines;
         }
     }
 }

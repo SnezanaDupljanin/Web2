@@ -5,7 +5,7 @@
       <div class="panel panel-default">
         <div class="panel-body">
           <div class="row">
-            <div class="col-md-12 lead">User profile
+            <div style="font-size: 16px;color:black;font-weight: bold" class="col-md-12 lead">User profile
               <hr>
             </div>
           </div>
@@ -17,15 +17,15 @@
             <div class="col-md-8">
               <div class="row">
                 <div class="col-md-12">
-                  <h1 class="only-bottom-margin">{{user.Name+" "+user.LastName}}</h1>
+                  <h1 style="color: rgb(216, 29, 29)"class="only-bottom-margin">{{user.Name+" "+user.LastName}}</h1>
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-6">
-                  <span class="text-muted">Email:</span> {{user.Email}}<br>
-                  <span class="text-muted">Birth date:</span> {{user.DateOfBirth}}<br>
-                  <span class="text-muted">Active:</span>{{user.Active}}<br><br>
-                  <small class="text-muted">{{user.Type}}</small>
+                  <span style="font-size: 16px;color:black;font-weight: bold">Email:</span><i style="font-size: 16px;color:rgb(80, 74, 74);font-weight: bold"> {{user.Email}}</i><br>
+                  <span style="font-size: 16px;color:black;font-weight: bold">Birth date:</span> <i style="font-size: 16px;color:rgb(80, 74, 74);font-weight: bold"> {{user.DateOfBirth}}</i><br>
+                  <span style="font-size: 16px;color:black;font-weight: bold">Active:</span><i style="font-size: 16px;color:rgb(80, 74, 74);font-weight: bold">{{user.Active}}</i><br>
+                  <span style="font-size: 16px;color:black;font-weight: bold">User type:</span> <i style="font-size: 16px;color:rgb(80, 74, 74);font-weight: bold">{{user.Type}}</i>
                 </div>
               
                   <div class="">
@@ -38,9 +38,9 @@
           </div>
           <div class="row">
             <div class="col-md-12">
-              <hr><button style="margin-left: 300px" (click)="approveUser(user)" class="btn btn-default "><i
+              <hr><button style="margin-left: 280px;font-weight: bold;color:green;font-size:12px" (click)="approveUser(user)" class="btn btn-default "><i
                   class="glyphicon glyphicon-pencil" ></i> Approve </button>
-              <button style="margin-left: 100px" (click)="refuseUser(user)" class="btn btn-default "><i class="glyphicon glyphicon-pencil"></i>Refuse </button>
+              <button style="margin-left: 100px;font-weight: bold;color:red;font-size:12px" (click)="refuseUser(user)" class="btn btn-default "><i class="glyphicon glyphicon-pencil"></i>Refuse </button>
             </div>
           </div>
           

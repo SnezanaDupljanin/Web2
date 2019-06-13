@@ -10,6 +10,7 @@ using WebApp.Persistence.UnitOfWork;
 
 namespace WebApp.Controllers
 {
+    [Authorize]
     public class TicketController : ApiController
     {
         private readonly IUnitOfWork unitOfWork;
@@ -26,6 +27,7 @@ namespace WebApp.Controllers
         }
 
         // POST: api/Ticket
+        [Authorize(Roles = "Controller")]
         [ResponseType(typeof(Ticket))]
         public string PutTicket(int id, Ticket ticket)
         {

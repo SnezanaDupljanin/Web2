@@ -40,8 +40,8 @@ export class MapComponent {
   longitude: number;
   address: string;
   bodyText: string;
-  bodyText1: string;
-  bodyText2: string;
+  bodyText1: string = "";
+  bodyText2: string = "";
   locationStation : GeoLocation;
   station : Station;
   line: Line;
@@ -53,6 +53,9 @@ export class MapComponent {
   stationEdit_ID : number;
   showAdminDiv : boolean;
   private map;
+  stationNameErr:string;
+  lineNameErr:string;
+  directionErr:string;
 
   constructor(private ngZone: NgZone, private serverService: ServerService, private mapsAPILoader: MapsAPILoader, private modalService: ModalService) {
 
@@ -124,18 +127,21 @@ export class MapComponent {
 
   createStation(){
 
-    this.polyline.addLocation(this.locationStation);  
-    this.station = new Station();
-    this.stationLine = new StationLine();
-    this.station.Name = this.bodyText;
-    this.station.Address = this.address;
-    this.station.CoordinateX = this.locationStation.latitude;
-    this.station.CoordinateY = this.locationStation.longitude;
-    this.modalService.close('custom-modal-1');
-    this.bodyText = '';
-    this.callPostStation();
-    //this.callPostStationLine();
-
+    if(this.bodyText!="" && this.bodyText.length>4){
+      this.polyline.addLocation(this.locationStation);  
+      this.station = new Station();
+      this.stationLine = new StationLine();
+      this.station.Name = this.bodyText;
+      this.station.Address = this.address;
+      this.station.CoordinateX = this.locationStation.latitude;
+      this.station.CoordinateY = this.locationStation.longitude;
+      this.modalService.close('custom-modal-1');
+      this.bodyText = '';
+      this.callPostStation();
+      //this.callPostStationLine();
+    }else{
+      this.stationNameErr = "Name of station cannot be empty and must countans 4 letters."
+    }
   }
 
   callPostStation(){
@@ -182,16 +188,28 @@ export class MapComponent {
   }
 
   createLine(){
-    this.polyline.path = [];
-    this.stationIds = [];
-    this.stationsToDraw = [];
-    this.line = new Line();
-    this.line.Name = this.bodyText1;
-    this.line.Direction = this.bodyText2;
-    this.modalService.close('custom-modal-2');
-    this.bodyText1 = '';
-    this.bodyText2 = '';
-    this.callPostLine();
+
+    if(this.bodyText1!="" && (this.bodyText2=="A" || this.bodyText2=="B")){
+      this.polyline.path = [];
+      this.stationIds = [];
+      this.stationsToDraw = [];
+      this.line = new Line();
+      this.line.Name = this.bodyText1;
+      this.line.Direction = this.bodyText2;
+      this.modalService.close('custom-modal-2');
+      this.bodyText1 = '';
+      this.bodyText2 = '';
+      this.callPostLine();
+    }else if(this.bodyText1=="" && this.bodyText2!="A" && this.bodyText2!="B"){
+      this.lineNameErr = "Name of line cannot be empty.";
+      this.directionErr = "Direction must be only 'A' or 'B'";
+    }
+     else if(this.bodyText1==""){
+      this.lineNameErr = "Name of line cannot be empty.";
+    } else if(this.bodyText2!="A" && this.bodyText2!="B"){
+      this.directionErr = "Direction must be only 'A' or 'B'";
+    }
+
   }
 
   callGetLines(){

@@ -53,6 +53,60 @@
   margin-left: 50px
 }
 
+/* input[type=submit] {
+  padding:5px 15px; 
+  background : #008CBA; 
+  border:0 none;
+  cursor:pointer;
+  -webkit-border-radius: 5px;
+  border-radius: 5px; 
+  width:80px;
+  margin-left:10px;
+  color:white;
+} */
+
+.submit1{
+padding:5px 15px; 
+background : #008CBA; 
+border:0 none;
+cursor:pointer;
+-webkit-border-radius: 5px;
+border-radius: 5px; 
+width:80px;
+margin-left:10px;
+color:white;
+}
+
+.submit2{
+
+background : #008CBA; 
+border:0 none;
+cursor:pointer;
+-webkit-border-radius: 5px;
+border-radius: 5px; 
+width:528px;
+height: 30px;
+margin-top:10px;
+margin-left:0px;
+color:white;
+font-size: 16px;
+margin-top: 30px;
+}
+
+.delete{
+
+background : rgb(228, 68, 68); 
+border:0 none;
+cursor:pointer;
+-webkit-border-radius: 5px;
+border-radius: 5px; 
+width:528px;
+height: 30px;
+margin-top:10px;
+margin-left:0px;
+color:white;
+font-size: 16px;
+}
 
 .radio-container { 
 box-sizing: border-box; 
@@ -92,31 +146,43 @@ margin-left: 5px;
 
 }
 
-
 label{
 font-size: 16px;
 }
 
 .inlineinput div {
-display: inline;
 
+display: inline; 
 }
 
 #container {
-height: 100%;
-margin-right: 100px;
+/*height: 500px;*/
+margin-right: 10px;
 opacity: 0.8;
+background-color: rgb(219, 214, 214);
+
 }
 
 #topdiv {   
-height: 25%;   
-width:500px;  
+/*height: 25%;   
+width:500px; */ 
 background-color: rgb(219, 214, 214);
 }
 
 #maindiv {  
 background-color: rgb(219, 214, 214);
-height: 75%;    
-width:500px;     
+/*height: 75%;    
+width:500px;    */ 
 margin-top: 50px;
 }
+
+.divVel{
+height: 500px;
+width: 800px;
+}
+
+.divRadioVel{
+height: 770px;
+width: 800px;
+}
+/*---------------------------------------------------------------------------------------------------------*/

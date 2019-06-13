@@ -1,17 +1,19 @@
-<div class="container-fluid">
+<!-- <div class="container-fluid"> -->
   <div style="background-color: rgb(219, 214, 214); opacity: 0.8; margin-top: 10px; margin-left: 0px">
     <h1 style="color:rgb(13, 102, 114)" class="text-center">Lines map</h1>
 
   </div>
 
-  <div style="background-color: rgb(187, 184, 184); opacity: 0.8; margin-top: 10px; margin-left: 0px" class="inline"
+  <div style="height: 25px; width: 1535px;background-color: rgb(187, 184, 184); opacity: 0.8;margin-top: 10px; margin-left: 0px">
+  <div style="background-color: rgb(187, 184, 184); opacity: 0.8; margin-left: 20px" class="inline"
     *ngFor="let line of lineNames">
     <input type="radio" id="one" [(ngModel)]="radioSelected" name="lineCity" value="{{line}}"
       (change)="onItemChange1(line)" unchecked />
     <label for="radio1">{{line}}</label>
   </div>
+</div>
 
-  <div style="margin-top: 50px; margin-left:0px;display: flex">
+  <div style="margin-top: 20px; margin-left:0px;display: flex">
     <!-- Kreiramo mapu -->
     <agm-map id="map" [latitude]="markerInfo.location.latitude" [longitude]="markerInfo.location.longitude" [zoom]="15"
       (mapClick)="placeMarker($event)">
@@ -41,67 +43,71 @@
         [longitude]="point.longitude" [iconUrl]="polyline.icon">
         <agm-info-window [latitude]="markerInfo.location.latitude" [longitude]="markerInfo.location.longitude">
 
-            <!-- U info-window stavljamo html -->
-            <span style="font-size: 16px;font-family:'Times New Roman'">{{stationEdit.Name}}</span>
-            <br />
-            <span style="font-family:'Times New Roman'; color:gray;">{{stationEdit.Address}}</span>
-          </agm-info-window>
+          <!-- U info-window stavljamo html -->
+          <span style="font-size: 16px;font-family:'Times New Roman'">{{stationEdit.Name}}</span>
+          <br />
+          <span style="font-family:'Times New Roman'; color:gray;">{{stationEdit.Address}}</span>
+        </agm-info-window>
       </agm-marker>
     </agm-map>
-    <div id="container">
-      <div id="topdiv" *ngIf="showEditLine">
+
+    <div class="divVel" id="container" *ngIf="showEditLine">
+      <div id="topdiv " *ngIf="showEditLine">
         <form #f="ngForm" enctype="multipart/form-data" (ngSubmit)="UpdateLine()" ngNativeValidate>
-          <label style="margin-left: 150px">Line</label><br />
-          Name:
+          <label style="margin-left: 220px; font-size: 18px">Line</label><br />
+          <i style="font-size: 18px;">Name:</i>
           <span class="inlineinput">
-            <input type="text" id="name" style='display: inline' name="fname" [(ngModel)]="lineEdit.Name">
+            <input type="text" id="name" style='display: inline-block;width: 150px;height: 25px;' name="fname" [(ngModel)]="lineEdit.Name">
           </span>
-          Direcion:
-          <span class="inlineinput">
-            <input type="text" id="dir" style='display: inline;' name="dir" [(ngModel)]="lineEdit.Direction">
+          <i style="font-size: 18px;">Direction:</i>
+          <span class="inlineinput" style="width: 150px">
+            <input type="text" id="dir" style='display: inline-block;width: 150px;height: 25px;' name="dir" [(ngModel)]="lineEdit.Direction">
           </span>
           <span class="inlineinput">
-            <input type="submit" style='display: inline;' id="dir" style='display: inline;'>
+            <input type="submit" class="submit1" value="Change" style='display: inline-block;' id="dir">
           </span>
         </form>
       </div>
-      <div id="maindiv" *ngIf="showEditStation && showAdminDiv">
+      <div id="maindiv " *ngIf="showEditStation && showAdminDiv">
         <form #f="ngForm" enctype="multipart/form-data" (ngSubmit)="UpdateStation()" ngNativeValidate>
-          <label>
+          <label style="margin-left: 210px;margin-top: 30px; font-size: 18px">Station</label><br />
+          <label style="margin-left: 5px; margin-top:10px">
             Name:
-            <input type="text" name="names" [(ngModel)]="stationEdit.Name">
+            <input type="text" style='width: 528px;height: 25px; margin-left: 0px' name="names" [(ngModel)]="stationEdit.Name">
           </label>
-          <label>
+          <label style="margin-left: 5px; margin-top:10px">
             Address:
-            <input type="text" name="add" [(ngModel)]="stationEdit.Address">
+            <input type="text" style='width: 528px;height: 25px;margin-left: 0px' name="add" [(ngModel)]="stationEdit.Address">
           </label>
-          <label>
+          <label style="margin-left: 5px; margin-top:10px">
             Coordinate X:
-            <input type="text" name="cooX" [(ngModel)]="stationEdit.CoordinateX">
+            <input type="text" style='width: 528px;height: 25px;margin-left: 0px' name="cooX" [(ngModel)]="stationEdit.CoordinateX">
           </label>
-          <label>
+          <label style="margin-left: 5px; margin-top:10px">
             Coordinate Y:
-            <input type="text" name="cooY" [(ngModel)]="stationEdit.CoordinateY">
+            <input type="text" name="cooY" style='width: 528px;height: 25px;margin-left: 0px' [(ngModel)]="stationEdit.CoordinateY">
           </label> <br>
-          <input type="submit" id="dir">
+          <input type="submit" class="submit2" id="dir" value="Change">
         </form>
-        <button (click)="deleteStation()" type="button">Delete station</button>
+        <button class="delete" (click)="deleteStation()" type="button">Delete station</button>
       </div>
     </div>
   </div>
 
-  <div *ngIf="showAdminDiv" style="background-color: rgb(219, 214, 214); opacity: 0.8; margin-top: 10px; margin-left: 0px">
+  <div *ngIf="showAdminDiv"
+    style="background-color: rgb(219, 214, 214); opacity: 0.8; margin-top: 10px; margin-left: 0px">
     <button (click)="editLine()" class="buttonAdmin button2Admin btn1" type="button">Edit</button>
     <button (click)="openModal('custom-modal-2')" class="buttonAdmin button2Admin btn2" type="button"> Add Line</button>
     <button (click)="deleteLine()" class="buttonAdmin button2Admin btn2" type="button"> Delete Line</button>
   </div>
 
-</div>
+<!-- </div> -->
 
 <jw-modal id="custom-modal-1">
   <h1 style="color: red; font-size:16;font-style:bold;margin-left:200px">Creating new station</h1>
   <p style="font-size: 200%;font-family:'Times New Roman', Times, serif; margin-top: 20px ">Name: <input
       style="width: 100%;" type="text" [(ngModel)]="bodyText" /></p>
+  <p style="font-size: 200%;font-family:'Times New Roman', Times, serif; color: red; margin-top: 5px ">{{stationNameErr}}</p>
   <button class="button button1" (click)="closeModal('custom-modal-1');">Close</button>
   <button class="button button2" (click)="createStation()">Create</button>
 </jw-modal>
@@ -110,8 +116,10 @@
   <h1 style="color: red; font-size:16;font-style:bold;margin-left:200px">Creating new line</h1>
   <p style="font-size: 200%;font-family:'Times New Roman', Times, serif; margin-top: 20px ">Name: <input
       style="width: 100%;" type="text" [(ngModel)]="bodyText1" /></p>
+      <p style="font-size: 200%;font-family:'Times New Roman', Times, serif; color: red; margin-top: 5px ">{{lineNameErr}}</p>
   <p style="font-size: 200%;font-family:'Times New Roman', Times, serif; margin-top: 20px ">Direction: <input
       style="width: 100%;" type="text" [(ngModel)]="bodyText2" /></p>
+  <p style="font-size: 200%;font-family:'Times New Roman', Times, serif; color: red; margin-top: 5px ">{{directionErr}}</p>
   <button class="button button1" (click)="closeModal('custom-modal-2');">Close</button>
   <button class="button button2" (click)="createLine()">Create</button>
 </jw-modal>
