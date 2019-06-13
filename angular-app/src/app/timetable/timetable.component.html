@@ -10,19 +10,17 @@
 
   <ul class="list-group" *ngIf="showDivDay">
     <li class="list-group-item" style="margin-left: 300px; margin-right: 300px">
-      <input style="margin-left: 200px" type="radio" [(ngModel)]="radioSelectedDay" name="lineDay" value="Weekday"
-        (change)="onItemChange3()" />
-      <span style="padding-right: 20px; font-size: 15px; color: rgb(73, 71, 71); font-weight: bold">Weekday</span>
-      <input type="radio" [(ngModel)]="radioSelectedDay" name="lineDay" value="Saturday" (change)="onItemChange3()" />
-      <span style="padding-right: 20px; font-size: 15px; color: rgb(73, 71, 71); font-weight: bold">Saturday</span>
-      <input type="radio" [(ngModel)]="radioSelectedDay" name="lineDay" value="Sunday" (change)="onItemChange3()" />
-      <span style="padding-right: 20px; font-size: 15px; color: rgb(73, 71, 71); font-weight: bold">Sunday</span>
+      <div *ngFor="let d of days" class="inline"
+        style="padding-right: 217px; background-color: rgb(187, 184, 184); opacity: 0.8; margin-top: 10px; margin-left: 0px">
+        <input type="radio" [(ngModel)]="radioSelectedDay" name="lineDay" value="{{d}}" (change)="onItemChange3()" />
+        <span style="font-size: 15px; color: rgb(73, 71, 71); font-weight: bold">{{d}}</span>
+      </div>
     </li>
   </ul>
   <ul class="list-group" *ngIf="showDivCityLines">
     <table>
       <tr>
-        <td *ngFor="let line of cityLines">
+        <td *ngFor="let line of subORcityLines">
           <input type="radio" [(ngModel)]="radioSelected" name="lineCity" value="{{line}}"
             (change)="onItemChange1(line)" unchecked />
           <span style="padding-right: 15px; font-size: 15px; color: rgb(73, 71, 71); font-weight: bold">{{line}}</span>
@@ -32,29 +30,35 @@
   </ul>
 
   <ul class="list-group" *ngIf="showDivSuburbanLines">
-    <li class="list-group-item" *ngFor="let line of suburbanLines">
-      <input type="radio" [(ngModel)]="radioSelected" name="lineCity" value="{{line}}" (change)="onItemChange2(line)" />
-      {{line}}
-    </li>
+    <table>
+      <tr>
+        <td *ngFor="let line of subORcityLines">
+          <input type="radio" [(ngModel)]="radioSelected" name="lineCity" value="{{line}}"
+            (change)="onItemChange1(line)" unchecked />
+          <span style="padding-right: 15px; font-size: 15px; color: rgb(73, 71, 71); font-weight: bold">{{line}}</span>
+        </td>
+      </tr>
+    </table>
   </ul>
   <br clear="all">
   <div name="divTimes" *ngIf="showdivTimes">
     <table class="table table-striped">
       <thead>
         <tr>
-          <th style="font-size: 20px; color: rgb(250, 12, 12); " scope="col">Times: </th>
-          <!-- <div *ngIf="showEditAdmin">  -->
-          <div>
-            <button class="button_transparent" (click)="Delete()"> delete </button>
-          </div>
-
+          <th style="font-size: 20px; color: rgb(250, 12, 12); " scope="col">Times:
+            <!-- <div *ngIf="showEditAdmin">  -->
+            <div *ngIf="allowAdmin">
+              <button mdbBtn type="button" color="danger" rounded="true" outline="true" mdbWavesEffect
+                (click)="Delete()">Delete</button>
+            </div>
+          </th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let t of TT">
           <td>{{t}}</td>
           <td>
-            <div>
+            <div *ngIf="allowAdmin">
               <!-- <div *ngIf="showEditAdmin"> -->
               <button class="button_transparent" (click)="Edit(t)"> EDIT </button>
             </div>
@@ -63,8 +67,10 @@
         <th>
           <div *ngIf="showDivEditTime">
             <input [(ngModel)]="newValueTT" value="{{selectedTime}}">
-            <button class="button_transparent" (click)="Edit2()"> edit </button>
-            <button class="button_transparent" (click)="Close()"> close </button>
+            <div>
+              <button class="button_transparent" (click)="Edit2()"> edit </button>
+              <button class="button_transparent" (click)="Close()"> close </button>
+            </div>
           </div>
         </th>
       </tbody>

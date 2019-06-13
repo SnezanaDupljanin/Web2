@@ -11,6 +11,7 @@ import { StationLine } from '../models/stationLine.model';
 import { Ticket } from '../models/ticket.model';
 import { tick } from '@angular/core/testing';
 import { AppUser } from '../models/appUser.model';
+import { TimeTable } from '../models/timeTable.model';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -94,9 +95,9 @@ export class ServerService {
   putStation(Station_Id : number, station: Station): Observable<any>{
     return this.httpClient.put(`http://localhost:52295/api/Station/${Station_Id}`, station );
   }
-  putTimeTable(id_TT:number, s: string): any{
-    return this.httpClient.put(`http://localhost:52295/api/TimeTable/${id_TT}`, s );
-  }
+  putTimeTable(id_TT:number, timeTiable: TimeTable): any{
+    return this.httpClient.put(`http://localhost:52295/api/TimeTable/${id_TT}`, timeTiable);}
+    
   putUser(userID : string, user: AppUser): Observable<any>{
     let header = new HttpHeaders();
     header.append('enctype', 'multipart/form-data');
