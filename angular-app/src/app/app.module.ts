@@ -25,6 +25,8 @@ import { ModalComponent } from './modal/modal.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { VerifyProfileComponent } from './verify-profile/verify-profile.component';
 import { ValidateTicketComponent } from './validate-ticket/validate-ticket.component';
+import { CurrentVehiclesComponent } from './current-vehicles/current-vehicles.component';
+import { HttpClickService } from './services/click-http.service';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,8 @@ import { ValidateTicketComponent } from './validate-ticket/validate-ticket.compo
     ModalComponent,
     EditProfileComponent,
     VerifyProfileComponent,
-    ValidateTicketComponent
+    ValidateTicketComponent,
+    CurrentVehiclesComponent
 
   ],
   imports: [
@@ -60,7 +63,8 @@ import { ValidateTicketComponent } from './validate-ticket/validate-ticket.compo
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptor,
     multi: true
-  }
+  },
+  HttpClickService
   ],
   bootstrap: [AppComponent]
 })

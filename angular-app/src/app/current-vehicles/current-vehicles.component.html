@@ -1,0 +1,42 @@
+<div class="container-fluid">
+  <div style="background-color: rgb(219, 214, 214); opacity: 0.8; margin-top: 10px; margin-left: 0px">
+    <h1 style="color:rgb(13, 102, 114)" class="text-center">Current vehicles</h1>
+
+  </div>
+
+  <div style="background-color: rgb(187, 184, 184); opacity: 0.8; margin-top: 10px; margin-left: 0px" class="inline"
+    *ngFor="let line of lineNames">
+    <input type="radio" id="one" [(ngModel)]="radioSelected" name="lineCity" value="{{line}}"
+      (change)="onItemChange1(line)" unchecked />
+    <label for="radio1">{{line}}</label>
+  </div>
+
+  <div style="margin-top: 50px; margin-left:0px;display: flex">
+    <!-- Kreiramo mapu -->
+    <agm-map id="map" [latitude]="markerInfo.location.latitude" [longitude]="markerInfo.location.longitude" [zoom]="15"
+      (mapClick)="placeMarker($event)">
+      <!-- <agm-marker [latitude]="markerInfo.location.latitude" [longitude]="markerInfo.location.longitude"
+        [title]="markerInfo.title" [label]="markerInfo.label" [iconUrl]="markerInfo.iconUrl">
+
+         Svakom markeru dodajemo info-window (Nije obavezno!)
+        <agm-info-window [latitude]="markerInfo.location.latitude" [longitude]="markerInfo.location.longitude">
+
+           U info-window stavljamo html 
+          <span style="font-size: 16px;font-family:'Times New Roman'">Fakultet tehničkih nauka</span>
+          <br />
+          <span style="font-family:'Times New Roman'; color:gray;"><strong>Jugodrvo</strong></span>
+          <span style="font-family:'Times New Roman'; color:gray;">Bulevar oslobođenja 131</span>
+          <a [href]="markerInfo.link">See the site.</a>
+        </agm-info-window>
+
+      </agm-marker>      -->
+
+      <agm-marker  latitude="{{latMarker}}" longitude="{{longMarker}}" [iconUrl]="polyline.icon">
+      
+    </agm-marker>
+
+    </agm-map>
+
+    </div>
+
+</div>

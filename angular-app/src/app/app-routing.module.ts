@@ -8,6 +8,7 @@ import {TimetableComponent} from './timetable/timetable.component'
 import { VerifyProfileComponent } from './verify-profile/verify-profile.component';
 import { ValidateTicketComponent } from './validate-ticket/validate-ticket.component';
 import { CanActivateViaControllerGuard } from './guard/controller.guard';
+import { CurrentVehiclesComponent } from './current-vehicles/current-vehicles.component';
 
 const routes: Routes = [
   
@@ -45,6 +46,11 @@ const routes: Routes = [
     path: 'Validate', 
     component: ValidateTicketComponent,
     canActivate: [CanActivateViaControllerGuard] 
+  },
+
+  { 
+    path: 'Current', 
+    component: CurrentVehiclesComponent 
   },
 
 ];
