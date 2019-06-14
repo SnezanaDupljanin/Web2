@@ -39,7 +39,7 @@ namespace WebApp.Controllers
         }
 
         // GET: api/AppUsers/5
-        [Authorize]
+        
         [ResponseType(typeof(ApplicationUser))]
         public IHttpActionResult GetAppUser(int id)
         {
@@ -60,6 +60,8 @@ namespace WebApp.Controllers
             return Ok(appUser);
         }
         // PUT: api/AppUser/ ID
+       // [Authorize(Roles = "Admin")]
+       // [Authorize(Roles = "Controller")]
         [ResponseType(typeof(void))]
         public IHttpActionResult PutUser()
         {
@@ -84,18 +86,25 @@ namespace WebApp.Controllers
                         string subject = "Account approvement";
                         string body = string.Format("Hello from admin team! \n Your account\n\tFullname:{0} {1}\n\tDate of Birth: {2}\n is approved!Now, You can buy tickets with {3} discount.", appUser.Name, appUser.LastName, appUser.DateOfBirth, appUser.Type);
                         smtpService.SendMail(subject, body, email);
+                        u.Active = appUser.Active;
+                        contex.SaveChanges();
                     }
-                    string pom = appUser.Name;
-                    u.Name = pom.Split('|')[0];
-                    u.LastName = appUser.LastName;
-                    u.DateOfBirth = appUser.DateOfBirth;
-                    string s = pom.Split('|')[1];
-                    u.PasswordHash = ApplicationUser.HashPassword(s);
-                    u.Address = appUser.Address;
-                    u.Type = appUser.Type;
-                    u.ImageUrl = appUser.ImageUrl;
-                    u.Active = appUser.Active;
-                    contex.SaveChanges();
+                    else
+                    {
+                        string pom = appUser.Name;
+                        u.Name = pom.Split('|')[0];
+                        u.LastName = appUser.LastName;
+                        u.DateOfBirth = appUser.DateOfBirth;
+                        string s = pom.Split('|')[1];
+                        u.PasswordHash = ApplicationUser.HashPassword(s);
+                        u.Address = appUser.Address;
+                        u.Type = appUser.Type;
+                        u.ImageUrl = appUser.ImageUrl;
+                        u.Active = appUser.Active;
+                        contex.SaveChanges();
+
+                    }
+                    
                 }
                 else
                 {

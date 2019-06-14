@@ -48,8 +48,9 @@ namespace WebApp.Controllers
             {
                 dateTime = ticket1.DateOfPurchase.Value.AddHours(1);
 
-                if (dateTimeNow < ticket1.DateOfPurchase && dateTimeNow > dateTime)
+                if (ticket1.DateOfPurchase < dateTimeNow && dateTimeNow < dateTime)
                 {
+                    ticket1.Valid = true;
                     result = "Ticket is valid.";
                 }
                 else
@@ -66,6 +67,7 @@ namespace WebApp.Controllers
                 if (ticket1.DateOfPurchase.Value.Day == dateTime.Day)
                 {
                     result = "Valid ticket!";
+                    ticket1.Valid = true;
                 }
                 else
                 {
@@ -81,6 +83,7 @@ namespace WebApp.Controllers
                 if (ticket.DateOfPurchase.Value.Month == dateTime.Month && ticket.DateOfPurchase.Value.Year == dateTime.Year)
                 {
                     result = "Valid ticket";
+                    ticket1.Valid = true;
                 }
                 else
                 {
@@ -97,6 +100,7 @@ namespace WebApp.Controllers
                 if (ticket.DateOfPurchase.Value.Year == dateTime.Year)
                 {
                     result = "Valid ticket";
+                    ticket1.Valid = true;
                 }
                 else
                 {

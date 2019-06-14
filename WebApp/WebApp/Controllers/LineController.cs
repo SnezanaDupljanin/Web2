@@ -12,7 +12,7 @@ using WebApp.Persistence.UnitOfWork;
 
 namespace WebApp.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class LineController : ApiController
     {
         private readonly IUnitOfWork unitOfWork;

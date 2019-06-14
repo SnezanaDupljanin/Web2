@@ -595,7 +595,6 @@ C:\Users\Ivana\Desktop\git\Web2\WebApp\WebApp\bin\System.Web.Http.Owin.xml
 C:\Users\Ivana\Desktop\git\Web2\WebApp\WebApp\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 C:\Users\Ivana\Desktop\git\Web2\WebApp\WebApp\obj\Debug\WebApp.csprojResolveAssemblyReference.cache
 C:\Users\Ivana\Desktop\git\Web2\WebApp\WebApp\obj\Debug\WebApp.Migrations.InitialMigration.resources
-C:\Users\Ivana\Desktop\git\Web2\WebApp\WebApp\obj\Debug\WebApp.Migrations.First11.resources
 C:\Users\Ivana\Desktop\git\Web2\WebApp\WebApp\obj\Debug\WebApp.csproj.GenerateResource.Cache
 C:\Users\Ivana\Desktop\git\Web2\WebApp\WebApp\obj\Debug\WebApp.csproj.CoreCompileInputs.cache
 C:\Users\Ivana\Desktop\git\Web2\WebApp\WebApp\obj\Debug\WebApp.dll
@@ -1050,3 +1049,4 @@ C:\Users\ASUS\Desktop\uh\Web2\WebApp\WebApp\obj\Debug\WebApp.csproj.CoreCompileI
 C:\Users\ASUS\Desktop\uh\Web2\WebApp\WebApp\obj\Debug\WebApp.csproj.CopyComplete
 C:\Users\ASUS\Desktop\uh\Web2\WebApp\WebApp\obj\Debug\WebApp.dll
 C:\Users\ASUS\Desktop\uh\Web2\WebApp\WebApp\obj\Debug\WebApp.pdb
+C:\Users\Ivana\Desktop\git\Web2\WebApp\WebApp\obj\Debug\WebApp.Migrations.Prva.resources

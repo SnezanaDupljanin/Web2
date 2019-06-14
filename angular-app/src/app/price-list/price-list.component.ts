@@ -51,7 +51,9 @@ export class PriceListComponent implements OnInit {
     this.callGetItems(); 
     this.callGetCoefficients(); 
     this.callGetPrices();
-    this.getUserDetails();
+
+    if(localStorage.jwt)
+      this.getUserDetails();
 
     if(localStorage.role ==="AppUser"){
       this.showButton = true;
