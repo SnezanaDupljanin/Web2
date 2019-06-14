@@ -4,11 +4,8 @@ export class PriceListItem{
     item_Id : number;  
     price : number;  
 
-    constructor(id:number, priceList_Id:number,item_Id:number,price:number)
+    constructor()
     {
-        this.id = id;
-        this.priceList_Id= priceList_Id;
-        this.item_Id = item_Id;
-        this.price = price;
+     
     }
 }

@@ -61,6 +61,9 @@ export class ServerService {
     return this.httpClient.get('http://localhost:52295/api/StationLine');
   } 
 
+  getBuyTickets(): Observable<any>{
+    return this.httpClient.get('http://localhost:52295/api/Ticket');
+  }
 
   getTimeTable() : Observable<any>{
     return this.httpClient.get('http://localhost:52295/api/TimeTable');
@@ -87,7 +90,9 @@ export class ServerService {
   postTicket(ticket:Ticket): Observable<any>{
     return this.httpClient.post("http://localhost:52295/api/Ticket", ticket);
   }
-
+  putTicket(id_T:number, priceListItem: PriceListItem): any{
+    return this.httpClient.put(`http://localhost:52295/api/PriceListItem/${id_T}`, priceListItem);}
+    
   putLine(Line_Id : number, line: Line): Observable<any>{
     return this.httpClient.put(`http://localhost:52295/api/Line/${Line_Id}`, line );
   }

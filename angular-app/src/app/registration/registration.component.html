@@ -1,7 +1,7 @@
 <div class="container p-3">
   <div class="offset-3 col-6">
     <div class="card">
-      <div class="card-header  font-weight-bold">
+      <div style="font-size: 25px" class="card-header  font-weight-bold">
         Sign Up Form
       </div>
       <div class="card card-body">
@@ -11,7 +11,7 @@
             <div class="input-group">
               <span class="input-group-addon"><i class="fa fa-user"
                   style="margin-right: 10px; margin-top: 10px"></i></span>
-              <input placeholder="First Name" id="Name" formControlName="Name" class="form-control" required>
+              <input style="height: 38px; font-size: 15px" placeholder="First Name" id="Name" formControlName="Name" class="form-control" required>
               <div *ngIf="f.Name.invalid && (f.Name.dirty || f.Name.touched)">
                 <div class="text-danger" *ngIf="f.Name.errors.required">
                   Name is Required!
@@ -27,7 +27,7 @@
             <div class="input-group">
               <span class="input-group-addon"><i class="fa fa-user"
                   style="margin-right: 10px; margin-top: 10px"></i></span>
-              <input placeholder="Last Name" id="LastName" formControlName="LastName" class="form-control" required>
+              <input style="height: 38px; font-size: 15px" placeholder="Last Name" id="LastName" formControlName="LastName" class="form-control" required>
               <div *ngIf="f.LastName.invalid && (f.LastName.dirty || f.LastName.touched)">
                 <div class="text-danger" *ngIf="f.LastName.errors.required">
                   Last name is Required!
@@ -43,7 +43,7 @@
             <div class="input-group">
               <span class="input-group-addon"><i class="fa fa-user"
                   style="margin-right: 10px; margin-top: 10px"></i></span>
-              <input type="date" placeholder="Date Of Birth" id="DateOfBirth" formControlName="DateOfBirth"
+              <input style="height: 38px; font-size: 15px" type="date" placeholder="Date Of Birth" id="DateOfBirth" formControlName="DateOfBirth"
                 class="form-control" required>
               <div *ngIf="f.DateOfBirth.invalid && (f.DateOfBirth.dirty || f.DateOfBirth.touched)">
                 <div class="text-danger" *ngIf="f.DateOfBirth.errors.required">
@@ -60,7 +60,7 @@
             <div class="input-group">
               <span class="input-group-addon"><i class="fa fa-paper-plane"
                   style="margin-right: 10px; margin-top: 10px"></i></span>
-              <input placeholder="Email" id="Email" formControlName="Email" class="form-control" required>
+              <input style="height: 38px; font-size: 15px" placeholder="Email" id="Email" formControlName="Email" class="form-control" required>
               <div *ngIf="f.Email.invalid && (f.Email.dirty || f.Email.touched)">
                 <div class="text-danger" *ngIf="f.Email.errors.required">
                   Email is Required!
@@ -74,10 +74,11 @@
 
           <div class="form-group">
             <div class="input-group">
+                <show-hide-password size="lg" btnStyle="primary" [btnOutline]="false">
               <span class="input-group-addon"><i class="fa fa-key"
                   style="margin-right: 10px; margin-top: 10px"></i></span>
-              <input type="password" placeholder="Password" id="Password" formControlName="Password"
-                class="form-control" required>
+              <input style="height: 38px; font-size: 15px" type="password" placeholder="Password" id="Password" formControlName="Password"
+                class="form-control" required></show-hide-password>
               <div *ngIf="f.Password.invalid && (f.Password.dirty || f.Password.touched)">
                 <div class="text-danger" *ngIf="f.Password.errors.required">
                   Last name is Required!
@@ -103,11 +104,12 @@
 
           <div class="form-group">
             <div class="input-group">
+                <show-hide-password size="lg" btnStyle="primary" [btnOutline]="false">
               <span class="input-group-addon"><i class="fa fa-key"
                   style="margin-right: 10px; margin-top: 10px"></i></span>
-              <input type="password" placeholder="Confirm Password" id="ConfirmPassword"
+              <input style="height: 38px; font-size: 15px" type="password" placeholder="Confirm Password" id="ConfirmPassword"
                 formControlName="ConfirmPassword" class="form-control" required>
-
+              </show-hide-password>
               <div *ngIf="f.ConfirmPassword.invalid && (f.ConfirmPassword.dirty || f.ConfirmPassword.touched)">
                 <div class="text-danger" *ngIf="f.ConfirmPassword.errors.required">
                   Confirm is Required!
@@ -122,7 +124,7 @@
             <div class="input-group">
               <span class="input-group-addon"><i class="fa fa-user"
                   style="margin-right: 10px; margin-top: 10px"></i></span>
-              <input placeholder="Address" id="Address" formControlName="Address" class="form-control" required>
+              <input style="height: 38px; font-size: 15px" placeholder="Address" id="Address" formControlName="Address" class="form-control" required>
               <div *ngIf="f.Address.invalid && (f.Address.dirty || f.Address.touched)">
                 <div class="text-danger" *ngIf="f.Address.errors.required">
                   Address is Required!
@@ -141,7 +143,7 @@
             <div class="input-group">
               <span class="input-group-addon"><i class="fa fa-user"
                   style="margin-right: 10px; margin-top: 10px"></i></span>
-              <select placeholder="Type" id="Type" formControlName="Type" class="form-control" required>
+              <select style="height: 38px; font-size: 15px" placeholder="Type" id="Type" formControlName="Type" class="form-control" required>
                 <option value="Regular">Regular</option>
                 <option value="Student">Student</option>
                 <option value="Pensioner">Pensioner</option>
@@ -158,10 +160,10 @@
             <div class="input-group">
               <span class="input-group-addon"><i class="fa fa-user"
                   style="margin-right: 10px; margin-top: 10px"></i></span>
-              <input  type="file" id="ImageUrl" (change) = "onFileChanged($event)" formControlName="ImageUrl">
+              <input style="height: 38px; font-size: 15px" type="file" id="ImageUrl" (change) = "onFileChanged($event)" formControlName="ImageUrl">
             </div>
           </div>
-          <button type="submit" class="btn btn-default" [disabled]="appUser.invalid ">Submit</button>         
+          <button type="submit" class="btn btn-default"  style="margin-left: 180px" [disabled]="appUser.invalid ">Submit</button>         
         </form>
       </div>
     </div>

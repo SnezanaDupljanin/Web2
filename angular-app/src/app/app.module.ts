@@ -27,6 +27,7 @@ import { VerifyProfileComponent } from './verify-profile/verify-profile.componen
 import { ValidateTicketComponent } from './validate-ticket/validate-ticket.component';
 import { CurrentVehiclesComponent } from './current-vehicles/current-vehicles.component';
 import { HttpClickService } from './services/click-http.service';
+import { ShowHidePasswordModule } from 'ngx-show-hide-password';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { HttpClickService } from './services/click-http.service';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    ShowHidePasswordModule,
     AgmCoreModule.forRoot({apiKey: 'AIzaSyDnihJyw_34z5S1KZXp90pfTGAqhFszNJk'}),
 
   ],

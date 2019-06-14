@@ -17,7 +17,7 @@ export class EditProfileComponent implements OnInit {
 
   validationMessage: string = "";
   nesto:any;
-  user: AppUser;
+  user: AppUser=new AppUser();
   id: string;
 
   appUser = this.fb.group({
@@ -50,17 +50,7 @@ export class EditProfileComponent implements OnInit {
   {
     //his.user = new AppUser;
     //this.user.Name = "Snezana";
-    this.getUserInfo();
-
-    this.appUser.value.Name=this.user.Name;
-    this.appUser.value.LastName =this.user.LastName;
-    this.appUser.value.Email=this.user.Email;
-    this.appUser.value.Address = this.user.Address;
-    this.appUser.value.Password = this.user.Password;
-    this.appUser.value.ConfirmPassword = this.user.ConfirmPassword;
-    this.appUser.value.DateOfBirth = this.user.DateOfBirth;
-    this.appUser.value.ImageUrl =this.user.ImageUrl;
-    this.appUser.value.Type = this.user.Type ;
+    this.getUserInfo();    
   }
   getUserInfo() : any {
 
@@ -69,6 +59,15 @@ export class EditProfileComponent implements OnInit {
       data => {
         //this.nesto = res[0];
         this.user = data;
+        this.appUser.value.Name=this.user.Name;
+        this.appUser.value.LastName =this.user.LastName;
+        this.appUser.value.Email=this.user.Email;
+        this.appUser.value.Address = this.user.Address;
+        this.appUser.value.Password = this.user.Password;
+        this.appUser.value.ConfirmPassword = this.user.ConfirmPassword;
+        this.appUser.value.DateOfBirth = this.user.DateOfBirth;
+        this.appUser.value.ImageUrl =this.user.ImageUrl;
+        this.appUser.value.Type = this.user.Type ;
       },
       err => {
         this.validationMessage = err.error.error_description;
@@ -95,14 +94,15 @@ UpdateUser(user: AppUser)
   this.user.ImageUrl = this.appUser.value.ImageUrl;
   this.user.Type = this.appUser.value.Type;
 
+  var u = this.user;
+  u.Name = this.user.Name+'|'+this.user.Password;
   this.id = this.user.Email.split('@')[0];
 
-  this.serverService.putUser(this.id, this.user)
+  this.serverService.putUser(this.id, u)
     .subscribe(
       data => {
-        //this.nesto = res[0];
-        //this.user = data;
         console.log('ok');
+        this.router.navigate(['']);
       },
       err => {
         this.validationMessage = err.error.error_description;

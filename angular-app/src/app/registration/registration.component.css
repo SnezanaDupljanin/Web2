@@ -7,8 +7,13 @@
 }
 
 .btn {        
-background-color: #56baed;
-}
+  background-color:#0276FF;
+  color: #e1e1e1;
+  padding: 5px 30px;
+  text-align: center;
+  font-size: 16px;
+  
+  }
 
 .signup-form {
   width: 390px;

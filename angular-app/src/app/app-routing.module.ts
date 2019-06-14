@@ -9,6 +9,7 @@ import { VerifyProfileComponent } from './verify-profile/verify-profile.componen
 import { ValidateTicketComponent } from './validate-ticket/validate-ticket.component';
 import { CanActivateViaControllerGuard } from './guard/controller.guard';
 import { CurrentVehiclesComponent } from './current-vehicles/current-vehicles.component';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
 
 const routes: Routes = [
   
@@ -51,6 +52,10 @@ const routes: Routes = [
   { 
     path: 'Current', 
     component: CurrentVehiclesComponent 
+  },
+  {
+    path:'Edit',
+    component: EditProfileComponent
   },
 
 ];

@@ -19,6 +19,7 @@ export class PriceListComponent implements OnInit {
   items: Array<any>;
   prices: Array<any>;
   coefficients: Array<any>;
+  buyTickets: Array<any>;
   id_item: number;
   id_type: number;
   priceListItems: Array<any>;
@@ -31,7 +32,17 @@ export class PriceListComponent implements OnInit {
   showButton:boolean;
   user: AppUser;
   ticket : Ticket;
-
+  showTicketList:Array<any>=[];
+  showDivList:boolean;
+  showButtonAdmin:boolean;
+  showEditT:boolean;
+  showEditD:boolean;
+  showEditM:boolean;
+  showEditY:boolean;
+  newValue:any;
+  new:number;
+  priceLItem:PriceListItem=new PriceListItem();
+  Id_PLI:number;
 
   constructor(private serverService: ServerService, private route: ActivatedRoute, private router: Router) {
   }
@@ -47,8 +58,36 @@ export class PriceListComponent implements OnInit {
     }else{
       this.showButton = false;
     }
+    if(localStorage.role === "Admin")    {
+      this.showButtonAdmin = true;
+    }
+    else{
+      this.showButtonAdmin = false;
+    }
   }
-
+  showBuyTicket()
+  {
+    this.showTicketList=[];
+    this.getBuyT();
+  }
+  getBuyT() : any{
+    this.serverService.getBuyTickets()
+    .subscribe(
+      data => {
+        this.buyTickets = data; 
+        var i = this.user.Email.split('@')[0];
+        this.buyTickets.forEach(x=>{
+          if(x.User_Id == i){
+            this.showTicketList.push(x);
+          }
+        });
+        this.showDivList=true;
+      },
+      err => {
+        console.log(err);
+      }
+    )
+  }
   getUserDetails() : any {
     this.serverService.getUserDetails()
     .subscribe(
@@ -63,7 +102,7 @@ export class PriceListComponent implements OnInit {
 
   isDisabledStudent(){
     if(localStorage.role=='AppUser'){
-      if(this.user.Type == 'Student'){
+      if(this.user.Type == 'Student' && this.user.Active==true){
         return false;
       }else{
         return true;
@@ -76,7 +115,7 @@ export class PriceListComponent implements OnInit {
 
   isDisabledPensioner(){
     if(localStorage.role=='AppUser'){
-      if(this.user.Type == 'Pensioner'){
+      if(this.user.Type == 'Pensioner' && this.user.Active==true){
         return false;
       }else{
         return true;
@@ -244,6 +283,122 @@ export class PriceListComponent implements OnInit {
     .subscribe(
       data => {
         console.log("Kupljena karta!!");              
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  }
+  buttonEditTemporal(){
+    this.showEditT=true;
+  }
+  buttonEditDaily(){
+    this.showEditD=true;
+  }
+  buttonEditMonthly(){
+    this.showEditM=true;
+  }
+  buttonEditYearly(){
+    this.showEditY=true;
+  }
+  CloseD(){
+    this.showEditD=false;
+  }
+  CloseT(){
+    this.showEditT=false;
+  }
+  CloseM(){
+    this.showEditM=false;
+  }
+  CloseY(){
+    this.showEditY=false;
+  }
+  EditT(a){
+    this.prices.forEach(x=>{
+      if(x.Item_Id == 1 && x.PriceList_Id==1 && x.Price==this.priceTemporal)
+      {
+        this.Id_PLI = x.Id;
+      }
+    });
+    this.new = a;
+    this.priceTemporal =this.new;
+    this.priceLItem.item_Id = 1;
+    this.priceLItem.priceList_Id=1;
+    this.priceLItem.price= this.priceTemporal;
+    this.priceLItem.id = this.Id_PLI;
+    this.serverService.putTicket(this.Id_PLI,this.priceLItem)
+    .subscribe(
+      data => {
+        console.log("Editovana!!");              
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  }
+  EditD(a){
+    this.prices.forEach(x=>{
+      if(x.Item_Id == 2 && x.PriceList_Id==1 && x.Price==this.priceDaily)
+      {
+        this.Id_PLI = x.Id;
+      }
+    });
+    this.new = a;
+    this.priceDaily =this.new;
+    this.priceLItem.item_Id = 2;
+    this.priceLItem.priceList_Id=1;
+    this.priceLItem.price= this.priceDaily;
+    this.priceLItem.id = this.Id_PLI;
+    this.serverService.putTicket(this.Id_PLI,this.priceLItem)
+    .subscribe(
+      data => {
+        console.log("Editovana!!");              
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  }
+  EditM(a){
+    this.prices.forEach(x=>{
+      if(x.Item_Id == 3 && x.PriceList_Id==1 && x.Price==this.priceMonthly)
+      {
+        this.Id_PLI = x.Id;
+      }
+    });
+    this.new = a;
+    this.priceMonthly =this.new;
+    this.priceLItem.item_Id = 3;
+    this.priceLItem.priceList_Id=1;
+    this.priceLItem.price= this.priceMonthly;
+    this.priceLItem.id = this.Id_PLI;
+    this.serverService.putTicket(this.Id_PLI,this.priceLItem)
+    .subscribe(
+      data => {
+        console.log("Editovana!!");              
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  }
+  EditY(a){
+    this.prices.forEach(x=>{
+      if(x.Item_Id == 4 && x.PriceList_Id==1 && x.Price==this.priceYearly)
+      {
+        this.Id_PLI = x.Id;
+      }
+    });
+    this.new = a;
+    this.priceYearly =this.new;
+    this.priceLItem.item_Id = 4;
+    this.priceLItem.priceList_Id=1;
+    this.priceLItem.price= this.priceYearly;
+    this.priceLItem.id = this.Id_PLI;
+    this.serverService.putTicket(this.Id_PLI,this.priceLItem)
+    .subscribe(
+      data => {
+        console.log("Editovana!!");              
       },
       error => {
         console.log(error);

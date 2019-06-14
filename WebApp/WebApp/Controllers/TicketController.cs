@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading;
 using System.Web.Http;
 using System.Web.Http.Description;
 using WebApp.Models;
@@ -14,6 +15,7 @@ namespace WebApp.Controllers
     public class TicketController : ApiController
     {
         private readonly IUnitOfWork unitOfWork;
+        private Mutex mutex = new Mutex();
 
         public TicketController(IUnitOfWork unitOfWork)
         {
@@ -23,6 +25,8 @@ namespace WebApp.Controllers
         // GET: api/Ticket
         public IEnumerable<Ticket> GetTickets()
         {
+            mutex.WaitOne();
+            mutex.ReleaseMutex();
             return unitOfWork.Tickets.GetAll();
         }
 
@@ -31,7 +35,7 @@ namespace WebApp.Controllers
         [ResponseType(typeof(Ticket))]
         public string PutTicket(int id, Ticket ticket)
         {
-
+            mutex.WaitOne();
             Ticket ticket1 = unitOfWork.Tickets.Get(id);
 
             string result = String.Empty;
@@ -103,7 +107,7 @@ namespace WebApp.Controllers
 
             unitOfWork.Tickets.Update(ticket1);
             unitOfWork.Complete();
-
+            mutex.ReleaseMutex();
             return result;
         }
 
@@ -111,17 +115,19 @@ namespace WebApp.Controllers
         [ResponseType(typeof(Ticket))]
         public IHttpActionResult PostTicket(Ticket ticket)
         {
-
+            mutex.WaitOne();
             ticket.DateOfPurchase = DateTime.Now;
 
             if (!ModelState.IsValid)
             {
+                mutex.ReleaseMutex();
                 return BadRequest(ModelState);
             }
 
             unitOfWork.Tickets.Add(ticket);
             unitOfWork.Complete();
 
+            mutex.ReleaseMutex();
             return CreatedAtRoute("DefaultApi", new { id = ticket.Id }, ticket);
         }
     }

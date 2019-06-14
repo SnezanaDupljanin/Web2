@@ -11,5 +11,8 @@
     <div id="formFooter">
       <a class="underlineHover" routerLink="/Registration">Don't have an account?</a>
     </div> 
+    <div id="formFooter" *ngIf="show">
+      <label class="underlineHover">This user doesn't have account?</label>
+    </div> 
   </div>
 </div>

@@ -4,6 +4,7 @@ using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading;
 using System.Web.Http;
 using System.Web.Http.Description;
 using WebApp.Models;
@@ -14,7 +15,7 @@ namespace WebApp.Controllers
     public class TimeTableController : ApiController
     {
         private readonly IUnitOfWork unitOfWork;
-
+        private Mutex mutex = new Mutex();
         public TimeTableController(IUnitOfWork unitOfWork)
         {
             this.unitOfWork = unitOfWork;
@@ -29,29 +30,33 @@ namespace WebApp.Controllers
         [ResponseType(typeof(void))]
         public IHttpActionResult DeleteLine(int id)
         {
-
+            mutex.WaitOne();
             TimeTable t = unitOfWork.TimeTables.Get(id);
             if (t == null)
             {
+                mutex.ReleaseMutex();
                 return NotFound();
             }
 
             unitOfWork.TimeTables.Remove(t);
             unitOfWork.Complete();
-
+            mutex.ReleaseMutex();
             return Ok(t);
         }
         //Put : api/TimeTable/id
         [ResponseType(typeof(void))]
         public IHttpActionResult PutTimeTable(int id, TimeTable time)
         {
+            mutex.WaitOne();
             if (!ModelState.IsValid)
             {
+                mutex.ReleaseMutex();
                 return BadRequest(ModelState);
             }
 
             if (id != time.Id)
             {
+                mutex.ReleaseMutex();
                 return BadRequest();
             }
 
@@ -64,6 +69,7 @@ namespace WebApp.Controllers
             {
                 if (!TimeTableExist(id))
                 {
+                    mutex.ReleaseMutex();
                     return NotFound();
                 }
                 else
@@ -71,7 +77,7 @@ namespace WebApp.Controllers
                     throw;
                 }
             }
-
+            mutex.ReleaseMutex();
             return StatusCode(HttpStatusCode.NoContent);
         }
         private bool TimeTableExist(int id)

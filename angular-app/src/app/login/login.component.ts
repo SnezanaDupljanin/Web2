@@ -16,6 +16,7 @@ import { NotificationService } from '../services/notification.service';
 export class LoginComponent implements OnInit {
 
   validationMessage: string = "";
+  show:boolean;
 
   constructor(private serverService: ServerService, private router: Router, private notificationService: NotificationService) { }
 
@@ -41,6 +42,7 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['']).then(() => window.location.reload()); //OVAKO REFRESUJEM STRANICUUUUUUUU
       },
       err => {
+        this.show=true;
         this.validationMessage = err.error.error_description;
         console.log(err);
       }
