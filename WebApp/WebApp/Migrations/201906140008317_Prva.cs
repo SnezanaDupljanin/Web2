@@ -3,7 +3,7 @@ namespace WebApp.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class First11 : DbMigration
+    public partial class Prva : DbMigration
     {
         public override void Up()
         {
@@ -31,8 +31,8 @@ namespace WebApp.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(),
-                        Direction = c.String(),
+                        Name = c.String(nullable: false, maxLength: 10),
+                        Direction = c.String(nullable: false, maxLength: 1),
                     })
                 .PrimaryKey(t => t.Id);
             
@@ -72,8 +72,8 @@ namespace WebApp.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(),
-                        Address = c.String(),
+                        Name = c.String(nullable: false, maxLength: 10),
+                        Address = c.String(nullable: false, maxLength: 50),
                         CoordinateX = c.Double(nullable: false),
                         CoordinateY = c.Double(nullable: false),
                     })
@@ -86,7 +86,7 @@ namespace WebApp.Migrations
                         Id = c.Int(nullable: false, identity: true),
                         DateOfPurchase = c.DateTime(),
                         Valid = c.Boolean(nullable: false),
-                        User_Id = c.Int(nullable: false),
+                        User_Id = c.String(),
                         TicketType = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id);

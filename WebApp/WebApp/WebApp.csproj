@@ -273,13 +273,9 @@
     <Compile Include="Migrations\201905222056072_InitialMigration.Designer.cs">
       <DependentUpon>201905222056072_InitialMigration.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201906021646415_First11.cs" />
-    <Compile Include="Migrations\201906021646415_First11.Designer.cs">
-      <DependentUpon>201906021646415_First11.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201906062006418_typeChanged.cs" />
-    <Compile Include="Migrations\201906062006418_typeChanged.Designer.cs">
-      <DependentUpon>201906062006418_typeChanged.cs</DependentUpon>
+    <Compile Include="Migrations\201906140008317_Prva.cs" />
+    <Compile Include="Migrations\201906140008317_Prva.Designer.cs">
+      <DependentUpon>201906140008317_Prva.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
@@ -421,11 +417,8 @@
     <EmbeddedResource Include="Migrations\201905222056072_InitialMigration.resx">
       <DependentUpon>201905222056072_InitialMigration.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201906021646415_First11.resx">
-      <DependentUpon>201906021646415_First11.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201906062006418_typeChanged.resx">
-      <DependentUpon>201906062006418_typeChanged.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201906140008317_Prva.resx">
+      <DependentUpon>201906140008317_Prva.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
